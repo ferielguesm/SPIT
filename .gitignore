@@ -24,3 +24,6 @@ __pycache__/
 # Misc
 psql_paths.txt
 *.log
+
+# Large media files
+spit-react/src/assets/tunisia.mp4
