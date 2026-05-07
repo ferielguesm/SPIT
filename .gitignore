@@ -1,5 +1,5 @@
-# ============================================================
-# SPIT – Root .gitignore
+﻿# ============================================================
+# SPIT â€“ Root .gitignore
 # ============================================================
 
 # IDE
@@ -24,6 +24,3 @@ __pycache__/
 # Misc
 psql_paths.txt
 *.log
-
-# Large media files
-spit-react/src/assets/tunisia.mp4

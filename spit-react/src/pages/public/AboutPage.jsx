@@ -5,8 +5,7 @@ import { PassengerAPI } from '../../api';
 import logo    from '../../assets/logo.png';
 import imgOACA  from '../../assets/OACA.webp';
 import imgSesame from '../../assets/sesame.png';
-// Video hosted externally — file too large (51MB) for git
-const tunisiaVideo = 'https://res.cloudinary.com/demo/video/upload/v1689775087/tunisia_aerial.mp4';
+import tunisiaVideo from '../../assets/tunisia.mp4';
 
 import imgSidiBouSaid from '../../assets/sidi bou said.avif';
 import imgDjerba      from '../../assets/djerba.jpg';
