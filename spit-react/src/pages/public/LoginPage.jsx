@@ -3,7 +3,9 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { AuthAPI, PassengerAPI } from '../../api';
 import logo from '../../assets/logo.png';
-import tunisiaVideo from '../../assets/tunisia.mp4';
+// Video hosted externally — file too large (51MB) for git
+const tunisiaVideo = 'https://res.cloudinary.com/demo/video/upload/v1689775087/tunisia_aerial.mp4';
+
 
 export default function LoginPage() {
   const { login, isLoggedIn, isAdmin } = useAuth();

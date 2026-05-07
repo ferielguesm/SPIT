@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { PassengerAPI, UserAPI } from '../../api';
-import tunisiaVideo from '../../assets/tunisia.mp4';
+// Video hosted externally — file too large (51MB) for git
+const tunisiaVideo = 'https://res.cloudinary.com/demo/video/upload/v1689775087/tunisia_aerial.mp4';
+
 import logo from '../../assets/logo.png';
 
 // ── Data & Constants ──────────────────────────────────────
