@@ -18,6 +18,6 @@ services:
       - key: SPRING_DATASOURCE_PASSWORD
         sync: false
       - key: CORS_ALLOWED_ORIGINS
-        sync: false
+        sync: false  # Set to your Vercel URL: https://spit-frontend.vercel.app
       - key: PORT
         value: 8080
