@@ -1,0 +1,25 @@
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / Secrets
+.env
+*.env.local
+application-local.properties
+
+# Uploads (runtime data, not source)
+uploads/
+
+# Maven wrapper jar (optional — include if you want)
+# !.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log

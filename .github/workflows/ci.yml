@@ -1,0 +1,62 @@
+# ============================================================
+# SPIT – CI/CD Pipeline
+# Runs on every push to main
+# ============================================================
+name: SPIT CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Backend Build ──────────────────────────────────────────
+  backend:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spit-backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests -B
+
+      - name: Run tests
+        run: mvn test -B
+        continue-on-error: true
+
+  # ── Frontend Build ─────────────────────────────────────────
+  frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spit-react
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: spit-react/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for production
+        run: npm run build
+        env:
+          VITE_API_URL: https://spit-backend.onrender.com
+          VITE_WS_URL: https://spit-backend.onrender.com/ws

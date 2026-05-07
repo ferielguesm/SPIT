@@ -1,0 +1,211 @@
+:root {
+  /* Brand Tokens */
+  --primary:      #2446D4;
+  --primary-rgb:  36, 70, 212;
+  --accent:       #FFC038;
+  --accent-rgb:   255, 192, 56;
+  --primary-grad: linear-gradient(135deg, #2446D4, #040814);
+  
+  /* Default Theme (Dark) */
+  --bg:           #040814;
+  --surface:      #0B1121;
+  --surface2:     #1E293B;
+  --border:       rgba(255, 255, 255, 0.06);
+  --text:         #F8FAFC;
+  --muted:        #94A3B8;
+  --label:        #64748B;
+  --sidebar-bg:   #040814;
+  --topbar-bg:    rgba(4, 8, 20, 0.85);
+  --input-bg:     rgba(255, 255, 255, 0.03);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --shadow:       0 10px 30px rgba(0, 0, 0, 0.4);
+  --chart-grid:   rgba(255, 255, 255, 0.05);
+  --chart-text:   #64748B;
+  --chart-accent: #FFC038;
+  
+  /* Hero Card Colors */
+  --card-yellow:  #FFC038;
+  --card-blue:    #2446D4;
+  --card-yellow-text: #040814;
+  --card-blue-text:   #FFFFFF;
+  --card-shadow-yellow: rgba(255, 192, 56, 0.3);
+  --card-shadow-blue:   rgba(36, 70, 212, 0.3);
+}
+
+/* Explicit Light Theme Override */
+[data-theme="light"] {
+  --bg:           #FFFFFF !important;
+  --surface:      #F8FAFC !important;
+  --surface2:     #F1F5F9 !important;
+  --border:       rgba(0, 0, 0, 0.08) !important;
+  --text:         #020617 !important;
+  --muted:        #475569 !important;
+  --label:        #64748B !important;
+  --sidebar-bg:   #040814 !important;
+  --topbar-bg:    rgba(255, 255, 255, 0.9) !important;
+  --input-bg:     #F1F5F9 !important;
+  --input-border: #CBD5E1 !important;
+  --shadow:       0 10px 25px rgba(0, 0, 0, 0.04) !important;
+  --chart-grid:   rgba(0, 0, 0, 0.08) !important;
+  --chart-text:   #475569 !important;
+  --chart-accent: #D97706 !important; /* Darker Amber for contrast on white */
+
+  /* Adjusted Hero Colors for Light Mode */
+  --card-yellow:  #FFC038 !important;
+  --card-blue:    #2446D4 !important;
+  --card-yellow-text: #040814 !important;
+  --card-blue-text:   #FFFFFF !important;
+  --card-shadow-yellow: rgba(255, 192, 56, 0.15) !important;
+  --card-shadow-blue:   rgba(36, 70, 212, 0.2) !important;
+}
+
+[data-theme="dark"] {
+  --bg:           #040814;
+  --surface:      #0B1121;
+  --surface2:     #1E293B;
+  --border:       rgba(255, 255, 255, 0.06);
+  --text:         #F8FAFC;
+  --muted:        #94A3B8;
+  --label:        #64748B;
+  --sidebar-bg:   #040814;
+  --topbar-bg:    rgba(4, 8, 20, 0.85);
+  --input-bg:     rgba(255, 255, 255, 0.03);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --shadow:       0 10px 30px rgba(0, 0, 0, 0.4);
+  --chart-grid:   rgba(255, 255, 255, 0.05);
+  --chart-text:   #64748B;
+  --chart-accent: #FFC038;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Utility Classes */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  100% { transform: translateY(-100vh) translateX(100px) scale(0.5); opacity: 0; }
+}
+
+.bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -150px;
+  background: linear-gradient(135deg, rgba(74, 145, 158, 0.4), rgba(33, 46, 83, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float linear infinite;
+  backdrop-filter: blur(2px);
+}
+
+/* Different sizes and durations */
+.bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 15s; animation-delay: 0s; }
+.bubble:nth-child(2) { width: 20px; height: 20px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
+.bubble:nth-child(3) { width: 60px; height: 60px; left: 40%; animation-duration: 20s; animation-delay: 4s; }
+.bubble:nth-child(4) { width: 30px; height: 30px; left: 60%; animation-duration: 14s; animation-delay: 1s; }
+.bubble:nth-child(5) { width: 50px; height: 50px; left: 80%; animation-duration: 18s; animation-delay: 3s; }
+.bubble:nth-child(6) { width: 25px; height: 25px; left: 90%; animation-duration: 16s; animation-delay: 5s; }
+.bubble:nth-child(7) { width: 35px; height: 35px; left: 15%; animation-duration: 13s; animation-delay: 7s; }
+.bubble:nth-child(8) { width: 45px; height: 45px; left: 70%; animation-duration: 17s; animation-delay: 2s; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.animate-slide-left { animation: slideInLeft 0.8s ease-out forwards; }
+.animate-slide-right {
+  animation: slideInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* ── Theme-aware table header ── */
+.table-header {
+  background: var(--surface2);
+}
+
+/* ── Fix hardcoded light-only colors in tables ── */
+[data-theme="light"] .table-header-row {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* ── Consistent card/surface transitions ── */
+.card, [class*="Card"] {
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Input consistency across themes ── */
+input, select, textarea {
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Fix passenger portal background in light mode ── */
+[data-theme="light"] .passenger-portal {
+  background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%) !important;
+}
+
+/* ── Sidebar always dark ── */
+aside[data-sidebar] {
+  background: var(--sidebar-bg) !important;
+}
+
+/* ── Topbar blur consistency ── */
+header {
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Fix hardcoded rgba(243,244,245) table headers ── */
+[data-theme="light"] tr[style*="rgba(243,244,245"] {
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+[data-theme="dark"] tr[style*="rgba(243,244,245"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ── Scrollbar theme consistency ── */
+[data-theme="light"] ::-webkit-scrollbar-track { background: #F8FAFC; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #CBD5E1; }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }

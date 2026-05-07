@@ -1,0 +1,26 @@
+# ============================================================
+# SPIT – Root .gitignore
+# ============================================================
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven local install
+apache-maven-3.9.6/
+maven.zip
+
+# Python
+PythonProject/.idea/
+__pycache__/
+*.pyc
+.venv/
+
+# Misc
+psql_paths.txt
+*.log
