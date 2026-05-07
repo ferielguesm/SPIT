@@ -1,4 +1,4 @@
-
+﻿
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +43,7 @@ function makeLiveIcon() {
   });
 }
 
-// â”€â”€ Edit Profile Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Edit Profile Modal Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function EditProfileModal({ profile, onClose, onSave }) {
   const [form, setForm] = useState({
     firstName:   profile.firstName   || '',
@@ -149,7 +149,7 @@ function EditProfileModal({ profile, onClose, onSave }) {
   );
 }
 
-// â”€â”€ New Post Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ New Post Modal Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function NewPostModal({ passenger, passengerId, onClose, onCreated }) {
   const [text, setText]         = useState('');
   const [imageFile, setImage]   = useState(null);
@@ -253,7 +253,7 @@ function NewPostModal({ passenger, passengerId, onClose, onCreated }) {
   );
 }
 
-// â”€â”€ Post Detail Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Post Detail Modal Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function PostModal({ post, passengerId, passenger, onClose, onDelete, onUpdate }) {
   const [comments, setComments]   = useState([]);
   const [commentText, setCommentText] = useState('');
@@ -381,540 +381,7 @@ function PostModal({ post, passengerId, passenger, onClose, onDelete, onUpdate }
   );
 }
 
-// â”€â”€ Main Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// ── Followers / Following Modal ────────────────────────────
-function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpdate }) {
-  const [list, setList]         = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [search, setSearch]     = useState('');
-  const [removing, setRemoving] = useState(null);
-  const COLORS = ['#2446D4','#4A919E','#166874','#833ab4','#10b981','#f59e0b'];
-
-  useEffect(() => {
-    setLoading(true);
-    const req = mode === 'followers' ? PassengerAPI.getFollowers(profileId) : PassengerAPI.getFollowing(profileId);
-    req.then(d => setList(Array.isArray(d) ? d : [])).catch(() => toast.error('Could not load list')).finally(() => setLoading(false));
-  }, [mode, profileId]);
-
-  const handleRemove = async (person) => {
-    if (!confirm('Remove ' + (person.firstName || person.nationality) + '?')) return;
-    setRemoving(person.id);
-    try {
-      if (mode === 'followers') { await PassengerAPI.unfollow(profileId, person.id); }
-      else { await PassengerAPI.unfollow(person.id, profileId); }
-      setList(prev => prev.filter(p => p.id !== person.id));
-      const updated = await PassengerAPI.getById(profileId);
-      onProfileUpdate(updated);
-      toast.success('Removed');
-    } catch { toast.error('Could not remove'); } finally { setRemoving(null); }
-  };
-
-  const handleFollow = async (person) => {
-    try { await PassengerAPI.follow(person.id, currentUserId); toast.success('Following ' + (person.firstName || person.nationality) + '!'); }
-    catch { toast.error('Could not follow'); }
-  };
-
-  const filtered = list.filter(p => {
-    const q = search.toLowerCase();
-    return (p.firstName||'').toLowerCase().includes(q) || (p.lastName||'').toLowerCase().includes(q) || (p.nationality||'').toLowerCase().includes(q);
-  });
-
-  return (
-    <div onClick={onClose} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.75)', zIndex:300, display:'flex', alignItems:'center', justifyContent:'center', padding:16, backdropFilter:'blur(4px)' }}>
-      <div onClick={e=>e.stopPropagation()} style={{ background:'var(--surface)', border:'1px solid var(--border)', borderRadius:20, width:'100%', maxWidth:440, maxHeight:'80vh', display:'flex', flexDirection:'column', overflow:'hidden', boxShadow:'0 24px 64px rgba(0,0,0,0.4)' }}>
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'18px 20px', borderBottom:'1px solid var(--border)' }}>
-          <h2 style={{ fontSize:17, fontWeight:800, color:'var(--text)', margin:0 }}>
-            {mode === 'followers' ? 'Followers' : 'Following'} <span style={{ fontSize:13, fontWeight:500, color:'var(--muted)' }}>({list.length})</span>
-          </h2>
-          <button onClick={onClose} style={{ background:'none', border:'none', cursor:'pointer', color:'var(--muted)', fontSize:20, lineHeight:1, padding:4, borderRadius:6 }}
-            onMouseEnter={e=>e.currentTarget.style.color='var(--text)'} onMouseLeave={e=>e.currentTarget.style.color='var(--muted)'}>x</button>
-        </div>
-        <div style={{ padding:'12px 20px', borderBottom:'1px solid var(--border)' }}>
-          <div style={{ position:'relative' }}>
-            <span className="material-symbols-outlined" style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', fontSize:16, color:'var(--muted)', pointerEvents:'none' }}>search</span>
-            <input value={search} onChange={e=>setSearch(e.target.value)} placeholder={'Search ' + (mode==='followers'?'followers':'following') + '...'}
-              style={{ width:'100%', background:'var(--surface2)', border:'1px solid var(--border)', borderRadius:10, padding:'8px 12px 8px 34px', fontSize:13, color:'var(--text)', outline:'none', boxSizing:'border-box' }}
-              onFocus={e=>e.target.style.borderColor='#4facfe'} onBlur={e=>e.target.style.borderColor='var(--border)'} />
-          </div>
-        </div>
-        <div style={{ flex:1, overflowY:'auto' }}>
-          {loading ? (
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'center', padding:48 }}>
-              <div style={{ width:28, height:28, border:'3px solid var(--border)', borderTopColor:'#4facfe', borderRadius:'50%', animation:'spin 0.8s linear infinite' }} />
-            </div>
-          ) : filtered.length === 0 ? (
-            <div style={{ textAlign:'center', padding:'48px 20px', color:'var(--muted)' }}>
-              <span className="material-symbols-outlined" style={{ fontSize:40, display:'block', marginBottom:10, color:'var(--border)' }}>{mode==='followers'?'group':'person_search'}</span>
-              <div style={{ fontSize:14, fontWeight:600, color:'var(--text)', marginBottom:4 }}>{search ? 'No results' : (mode==='followers' ? 'No followers yet' : 'Not following anyone yet')}</div>
-              {!search && <div style={{ fontSize:12 }}>{mode==='followers' ? 'Share your profile to get followers.' : 'Discover people on the feed.'}</div>}
-            </div>
-          ) : filtered.map((person, i) => {
-            const displayName = ((person.firstName||'') + ' ' + (person.lastName||'')).trim() || person.nationality || 'Traveller';
-            const initials = displayName.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-            const avatarSrc = person.profileImageUrl ? 'http://localhost:8089' + person.profileImageUrl : null;
-            const isRemoving = removing === person.id;
-            const isMe = person.id === currentUserId;
-            return (
-              <div key={person.id} style={{ display:'flex', alignItems:'center', gap:12, padding:'12px 20px', borderBottom:'1px solid var(--border)', transition:'background 0.15s' }}
-                onMouseEnter={e=>e.currentTarget.style.background='var(--surface2)'} onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
-                <div style={{ width:44, height:44, borderRadius:'50%', background:COLORS[i%COLORS.length], display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontWeight:700, fontSize:16, flexShrink:0, overflow:'hidden', border:'2px solid var(--border)' }}>
-                  {avatarSrc ? <img src={avatarSrc} alt="" style={{ width:'100%', height:'100%', objectFit:'cover' }} onError={e=>{e.target.style.display='none';}} /> : initials}
-                </div>
-                <div style={{ flex:1, overflow:'hidden' }}>
-                  <div style={{ fontSize:14, fontWeight:700, color:'var(--text)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
-                    {displayName}{isMe && <span style={{ marginLeft:6, fontSize:10, color:'#4facfe', fontWeight:600 }}>You</span>}
-                  </div>
-                  <div style={{ fontSize:11, color:'var(--muted)' }}>
-                    {person.nationality && <span>{'🌍 '+person.nationality}</span>}
-                    {person.travel?.destination && <span style={{ marginLeft:8 }}>{'📍 '+person.travel.destination}</span>}
-                  </div>
-                </div>
-                {!isMe && (
-                  <div style={{ display:'flex', gap:6, flexShrink:0 }}>
-                    {mode === 'followers' && (
-                      <button onClick={()=>handleFollow(person)}
-                        style={{ padding:'5px 12px', borderRadius:8, background:'rgba(79,172,254,0.1)', border:'1px solid rgba(79,172,254,0.25)', color:'#4facfe', fontSize:12, fontWeight:700, cursor:'pointer', transition:'all 0.15s' }}
-                        onMouseEnter={e=>{e.currentTarget.style.background='#4facfe';e.currentTarget.style.color='white';}}
-                        onMouseLeave={e=>{e.currentTarget.style.background='rgba(79,172,254,0.1)';e.currentTarget.style.color='#4facfe';}}>
-                        Follow
-                      </button>
-                    )}
-                    <button onClick={()=>handleRemove(person)} disabled={isRemoving}
-                      style={{ padding:'5px 12px', borderRadius:8, background:'rgba(239,68,68,0.08)', border:'1px solid rgba(239,68,68,0.2)', color:'#ef4444', fontSize:12, fontWeight:700, cursor:isRemoving?'not-allowed':'pointer', opacity:isRemoving?0.6:1, transition:'all 0.15s' }}
-                      onMouseEnter={e=>{if(!isRemoving){e.currentTarget.style.background='#ef4444';e.currentTarget.style.color='white';}}}
-                      onMouseLeave={e=>{e.currentTarget.style.background='rgba(239,68,68,0.08)';e.currentTarget.style.color='#ef4444';}}>
-                      {isRemoving ? '...' : 'Remove'}
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-// ── Followers / Following Modal ────────────────────────────
-function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpdate }) {
-  const [list, setList]         = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [search, setSearch]     = useState('');
-  const [removing, setRemoving] = useState(null);
-  const COLORS = ['#2446D4','#4A919E','#166874','#833ab4','#10b981','#f59e0b'];
-
-  useEffect(() => {
-    setLoading(true);
-    const req = mode === 'followers'
-      ? PassengerAPI.getFollowers(profileId)
-      : PassengerAPI.getFollowing(profileId);
-    req.then(d => setList(Array.isArray(d) ? d : []))
-       .catch(() => toast.error('Could not load list'))
-       .finally(() => setLoading(false));
-  }, [mode, profileId]);
-
-  const handleRemove = async (person) => {
-    if (!confirm('Remove ' + (person.firstName || person.nationality) + '?')) return;
-    setRemoving(person.id);
-    try {
-      if (mode === 'followers') {
-        await PassengerAPI.unfollow(profileId, person.id);
-      } else {
-        await PassengerAPI.unfollow(person.id, profileId);
-      }
-      setList(prev => prev.filter(p => p.id !== person.id));
-      const updated = await PassengerAPI.getById(profileId);
-      onProfileUpdate(updated);
-      toast.success('Removed');
-    } catch { toast.error('Could not remove'); }
-    finally { setRemoving(null); }
-  };
-
-  const handleFollow = async (person) => {
-    try {
-      await PassengerAPI.follow(person.id, currentUserId);
-      toast.success('Following ' + (person.firstName || person.nationality) + '!');
-    } catch { toast.error('Could not follow'); }
-  };
-
-  const filtered = list.filter(p => {
-    const q = search.toLowerCase();
-    return (p.firstName || '').toLowerCase().includes(q) ||
-           (p.lastName  || '').toLowerCase().includes(q) ||
-           (p.nationality || '').toLowerCase().includes(q);
-  });
-
-  const title = mode === 'followers' ? 'Followers' : 'Following';
-
-  return (
-    <div onClick={onClose} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.75)', zIndex:300, display:'flex', alignItems:'center', justifyContent:'center', padding:16, backdropFilter:'blur(4px)' }}>
-      <div onClick={e => e.stopPropagation()} style={{ background:'var(--surface)', border:'1px solid var(--border)', borderRadius:20, width:'100%', maxWidth:440, maxHeight:'80vh', display:'flex', flexDirection:'column', overflow:'hidden', boxShadow:'0 24px 64px rgba(0,0,0,0.4)' }}>
-
-        {/* Header */}
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'18px 20px', borderBottom:'1px solid var(--border)' }}>
-          <h2 style={{ fontSize:17, fontWeight:800, color:'var(--text)', margin:0 }}>
-            {title} <span style={{ fontSize:13, fontWeight:500, color:'var(--muted)' }}>({list.length})</span>
-          </h2>
-          <button onClick={onClose}
-            style={{ background:'none', border:'none', cursor:'pointer', color:'var(--muted)', fontSize:22, lineHeight:1, padding:4, borderRadius:6 }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}>
-            x
-          </button>
-        </div>
-
-        {/* Search */}
-        <div style={{ padding:'12px 20px', borderBottom:'1px solid var(--border)' }}>
-          <div style={{ position:'relative' }}>
-            <span className="material-symbols-outlined" style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', fontSize:16, color:'var(--muted)', pointerEvents:'none' }}>search</span>
-            <input value={search} onChange={e => setSearch(e.target.value)}
-              placeholder={'Search ' + title.toLowerCase() + '...'}
-              style={{ width:'100%', background:'var(--surface2)', border:'1px solid var(--border)', borderRadius:10, padding:'8px 12px 8px 34px', fontSize:13, color:'var(--text)', outline:'none', boxSizing:'border-box' }}
-              onFocus={e => e.target.style.borderColor = '#4facfe'}
-              onBlur={e => e.target.style.borderColor = 'var(--border)'} />
-          </div>
-        </div>
-
-        {/* List */}
-        <div style={{ flex:1, overflowY:'auto' }}>
-          {loading ? (
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'center', padding:48 }}>
-              <div style={{ width:28, height:28, border:'3px solid var(--border)', borderTopColor:'#4facfe', borderRadius:'50%', animation:'spin 0.8s linear infinite' }} />
-            </div>
-          ) : filtered.length === 0 ? (
-            <div style={{ textAlign:'center', padding:'48px 20px', color:'var(--muted)' }}>
-              <span className="material-symbols-outlined" style={{ fontSize:40, display:'block', marginBottom:10, color:'var(--border)' }}>
-                {mode === 'followers' ? 'group' : 'person_search'}
-              </span>
-              <div style={{ fontSize:14, fontWeight:600, color:'var(--text)', marginBottom:4 }}>
-                {search ? 'No results' : (mode === 'followers' ? 'No followers yet' : 'Not following anyone yet')}
-              </div>
-              {!search && <div style={{ fontSize:12 }}>{mode === 'followers' ? 'Share your profile to get followers.' : 'Discover people on the feed.'}</div>}
-            </div>
-          ) : (
-            filtered.map((person, i) => {
-              const name = ((person.firstName || '') + ' ' + (person.lastName || '')).trim() || person.nationality || 'Traveller';
-              const initials = name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
-              const avatarSrc = person.profileImageUrl ? 'http://localhost:8089' + person.profileImageUrl : null;
-              const isRemoving = removing === person.id;
-              const isMe = person.id === currentUserId;
-              return (
-                <div key={person.id}
-                  style={{ display:'flex', alignItems:'center', gap:12, padding:'12px 20px', borderBottom:'1px solid var(--border)', transition:'background 0.15s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'var(--surface2)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                  <div style={{ width:44, height:44, borderRadius:'50%', background:COLORS[i % COLORS.length], display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontWeight:700, fontSize:16, flexShrink:0, overflow:'hidden', border:'2px solid var(--border)' }}>
-                    {avatarSrc ? <img src={avatarSrc} alt="" style={{ width:'100%', height:'100%', objectFit:'cover' }} onError={e => { e.target.style.display='none'; }} /> : initials}
-                  </div>
-                  <div style={{ flex:1, overflow:'hidden' }}>
-                    <div style={{ fontSize:14, fontWeight:700, color:'var(--text)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
-                      {name}{isMe && <span style={{ marginLeft:6, fontSize:10, color:'#4facfe', fontWeight:600 }}>You</span>}
-                    </div>
-                    <div style={{ fontSize:11, color:'var(--muted)' }}>
-                      {person.nationality && <span>{'🌍 ' + person.nationality}</span>}
-                      {person.travel?.destination && <span style={{ marginLeft:8 }}>{'📍 ' + person.travel.destination}</span>}
-                    </div>
-                  </div>
-                  {!isMe && (
-                    <div style={{ display:'flex', gap:6, flexShrink:0 }}>
-                      {mode === 'followers' && (
-                        <button onClick={() => handleFollow(person)}
-                          style={{ padding:'5px 12px', borderRadius:8, background:'rgba(79,172,254,0.1)', border:'1px solid rgba(79,172,254,0.25)', color:'#4facfe', fontSize:12, fontWeight:700, cursor:'pointer', transition:'all 0.15s' }}
-                          onMouseEnter={e => { e.currentTarget.style.background='#4facfe'; e.currentTarget.style.color='white'; }}
-                          onMouseLeave={e => { e.currentTarget.style.background='rgba(79,172,254,0.1)'; e.currentTarget.style.color='#4facfe'; }}>
-                          Follow
-                        </button>
-                      )}
-                      <button onClick={() => handleRemove(person)} disabled={isRemoving}
-                        style={{ padding:'5px 12px', borderRadius:8, background:'rgba(239,68,68,0.08)', border:'1px solid rgba(239,68,68,0.2)', color:'#ef4444', fontSize:12, fontWeight:700, cursor:isRemoving?'not-allowed':'pointer', opacity:isRemoving?0.6:1, transition:'all 0.15s' }}
-                        onMouseEnter={e => { if(!isRemoving){e.currentTarget.style.background='#ef4444';e.currentTarget.style.color='white';} }}
-                        onMouseLeave={e => { e.currentTarget.style.background='rgba(239,68,68,0.08)';e.currentTarget.style.color='#ef4444'; }}>
-                        {isRemoving ? '...' : 'Remove'}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-// ── Followers / Following Modal ────────────────────────────
-function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpdate }) {
-  const [list, setList]         = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [search, setSearch]     = useState('');
-  const [removing, setRemoving] = useState(null);
-  const COLORS = ['#2446D4','#4A919E','#166874','#833ab4','#10b981','#f59e0b'];
-
-  useEffect(() => {
-    setLoading(true);
-    const req = mode === 'followers'
-      ? PassengerAPI.getFollowers(profileId)
-      : PassengerAPI.getFollowing(profileId);
-    req.then(d => setList(Array.isArray(d) ? d : []))
-       .catch(() => toast.error('Could not load list'))
-       .finally(() => setLoading(false));
-  }, [mode, profileId]);
-
-  const handleRemove = async (person) => {
-    if (!confirm('Remove ' + (person.firstName || person.nationality) + '?')) return;
-    setRemoving(person.id);
-    try {
-      if (mode === 'followers') {
-        await PassengerAPI.unfollow(profileId, person.id);
-      } else {
-        await PassengerAPI.unfollow(person.id, profileId);
-      }
-      setList(prev => prev.filter(p => p.id !== person.id));
-      const updated = await PassengerAPI.getById(profileId);
-      onProfileUpdate(updated);
-      toast.success('Removed');
-    } catch { toast.error('Could not remove'); }
-    finally { setRemoving(null); }
-  };
-
-  const handleFollow = async (person) => {
-    try {
-      await PassengerAPI.follow(person.id, currentUserId);
-      toast.success('Following ' + (person.firstName || person.nationality) + '!');
-    } catch { toast.error('Could not follow'); }
-  };
-
-  const filtered = list.filter(p => {
-    const q = search.toLowerCase();
-    return (p.firstName || '').toLowerCase().includes(q) ||
-           (p.lastName  || '').toLowerCase().includes(q) ||
-           (p.nationality || '').toLowerCase().includes(q);
-  });
-
-  const title = mode === 'followers' ? 'Followers' : 'Following';
-
-  return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, backdropFilter: 'blur(4px)' }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 20, width: '100%', maxWidth: 440, maxHeight: '80vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 64px rgba(0,0,0,0.4)' }}>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 20px', borderBottom: '1px solid var(--border)' }}>
-          <h2 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text)', margin: 0 }}>
-            {title} <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--muted)' }}>({list.length})</span>
-          </h2>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: 22, lineHeight: 1, padding: 4, borderRadius: 6 }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}>x</button>
-        </div>
-
-        <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--border)' }}>
-          <div style={{ position: 'relative' }}>
-            <span className="material-symbols-outlined" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', fontSize: 16, color: 'var(--muted)', pointerEvents: 'none' }}>search</span>
-            <input value={search} onChange={e => setSearch(e.target.value)}
-              placeholder={'Search ' + title.toLowerCase() + '...'}
-              style={{ width: '100%', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 10, padding: '8px 12px 8px 34px', fontSize: 13, color: 'var(--text)', outline: 'none', boxSizing: 'border-box' }}
-              onFocus={e => e.target.style.borderColor = '#4facfe'}
-              onBlur={e => e.target.style.borderColor = 'var(--border)'} />
-          </div>
-        </div>
-
-        <div style={{ flex: 1, overflowY: 'auto' }}>
-          {loading ? (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 48 }}>
-              <div style={{ width: 28, height: 28, border: '3px solid var(--border)', borderTopColor: '#4facfe', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-            </div>
-          ) : filtered.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '48px 20px', color: 'var(--muted)' }}>
-              <span className="material-symbols-outlined" style={{ fontSize: 40, display: 'block', marginBottom: 10, color: 'var(--border)' }}>{mode === 'followers' ? 'group' : 'person_search'}</span>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>
-                {search ? 'No results' : (mode === 'followers' ? 'No followers yet' : 'Not following anyone yet')}
-              </div>
-              {!search && <div style={{ fontSize: 12 }}>{mode === 'followers' ? 'Share your profile to get followers.' : 'Discover people on the feed.'}</div>}
-            </div>
-          ) : filtered.map((person, i) => {
-            const displayName = ((person.firstName || '') + ' ' + (person.lastName || '')).trim() || person.nationality || 'Traveller';
-            const initials = displayName.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
-            const avatarSrc = person.profileImageUrl ? 'http://localhost:8089' + person.profileImageUrl : null;
-            const isRemoving = removing === person.id;
-            const isMe = person.id === currentUserId;
-            return (
-              <div key={person.id}
-                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 20px', borderBottom: '1px solid var(--border)', transition: 'background 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.background = 'var(--surface2)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: COLORS[i % COLORS.length], display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 16, flexShrink: 0, overflow: 'hidden', border: '2px solid var(--border)' }}>
-                  {avatarSrc ? <img src={avatarSrc} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.target.style.display = 'none'; }} /> : initials}
-                </div>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {displayName}{isMe && <span style={{ marginLeft: 6, fontSize: 10, color: '#4facfe', fontWeight: 600 }}>You</span>}
-                  </div>
-                  <div style={{ fontSize: 11, color: 'var(--muted)' }}>
-                    {person.nationality && <span>{'🌍 ' + person.nationality}</span>}
-                    {person.travel?.destination && <span style={{ marginLeft: 8 }}>{'📍 ' + person.travel.destination}</span>}
-                  </div>
-                </div>
-                {!isMe && (
-                  <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
-                    {mode === 'followers' && (
-                      <button onClick={() => handleFollow(person)}
-                        style={{ padding: '5px 12px', borderRadius: 8, background: 'rgba(79,172,254,0.1)', border: '1px solid rgba(79,172,254,0.25)', color: '#4facfe', fontSize: 12, fontWeight: 700, cursor: 'pointer', transition: 'all 0.15s' }}
-                        onMouseEnter={e => { e.currentTarget.style.background = '#4facfe'; e.currentTarget.style.color = 'white'; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(79,172,254,0.1)'; e.currentTarget.style.color = '#4facfe'; }}>
-                        Follow
-                      </button>
-                    )}
-                    <button onClick={() => handleRemove(person)} disabled={isRemoving}
-                      style={{ padding: '5px 12px', borderRadius: 8, background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', color: '#ef4444', fontSize: 12, fontWeight: 700, cursor: isRemoving ? 'not-allowed' : 'pointer', opacity: isRemoving ? 0.6 : 1, transition: 'all 0.15s' }}
-                      onMouseEnter={e => { if (!isRemoving) { e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.color = 'white'; } }}
-                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.08)'; e.currentTarget.style.color = '#ef4444'; }}>
-                      {isRemoving ? '...' : 'Remove'}
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-// ── Followers / Following Modal ────────────────────────────
-function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpdate }) {
-  const [list, setList]         = React.useState([]);
-  const [loading, setLoading]   = React.useState(true);
-  const [search, setSearch]     = React.useState('');
-  const [removing, setRemoving] = React.useState(null);
-  const COLORS = ['#2446D4','#4A919E','#166874','#833ab4','#10b981','#f59e0b'];
-
-  React.useEffect(() => {
-    setLoading(true);
-    const req = mode === 'followers'
-      ? PassengerAPI.getFollowers(profileId)
-      : PassengerAPI.getFollowing(profileId);
-    req.then(d => setList(Array.isArray(d) ? d : []))
-       .catch(() => {})
-       .finally(() => setLoading(false));
-  }, [mode, profileId]);
-
-  const handleRemove = async (person) => {
-    if (!confirm('Remove ' + (person.firstName || person.nationality) + '?')) return;
-    setRemoving(person.id);
-    try {
-      if (mode === 'followers') {
-        await PassengerAPI.unfollow(profileId, person.id);
-      } else {
-        await PassengerAPI.unfollow(person.id, profileId);
-      }
-      setList(prev => prev.filter(p => p.id !== person.id));
-      const updated = await PassengerAPI.getById(profileId);
-      onProfileUpdate(updated);
-    } catch (e) { alert('Could not remove'); }
-    finally { setRemoving(null); }
-  };
-
-  const handleFollow = async (person) => {
-    try {
-      await PassengerAPI.follow(person.id, currentUserId);
-    } catch (e) { alert('Could not follow'); }
-  };
-
-  const filtered = list.filter(p => {
-    const q = search.toLowerCase();
-    return (p.firstName||'').toLowerCase().includes(q) ||
-           (p.lastName||'').toLowerCase().includes(q) ||
-           (p.nationality||'').toLowerCase().includes(q);
-  });
-
-  const title = mode === 'followers' ? 'Followers' : 'Following';
-
-  return (
-    <div onClick={onClose} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.75)', zIndex:300, display:'flex', alignItems:'center', justifyContent:'center', padding:16, backdropFilter:'blur(4px)' }}>
-      <div onClick={e=>e.stopPropagation()} style={{ background:'var(--surface)', border:'1px solid var(--border)', borderRadius:20, width:'100%', maxWidth:440, maxHeight:'80vh', display:'flex', flexDirection:'column', overflow:'hidden', boxShadow:'0 24px 64px rgba(0,0,0,0.4)' }}>
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'18px 20px', borderBottom:'1px solid var(--border)' }}>
-          <h2 style={{ fontSize:17, fontWeight:800, color:'var(--text)', margin:0 }}>
-            {title} <span style={{ fontSize:13, fontWeight:500, color:'var(--muted)' }}>({list.length})</span>
-          </h2>
-          <button onClick={onClose} style={{ background:'none', border:'none', cursor:'pointer', color:'var(--muted)', fontSize:20, lineHeight:1, padding:4, borderRadius:6 }}>x</button>
-        </div>
-        <div style={{ padding:'12px 20px', borderBottom:'1px solid var(--border)' }}>
-          <div style={{ position:'relative' }}>
-            <span className="material-symbols-outlined" style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', fontSize:16, color:'var(--muted)', pointerEvents:'none' }}>search</span>
-            <input value={search} onChange={e=>setSearch(e.target.value)}
-              placeholder={'Search ' + title.toLowerCase() + '...'}
-              style={{ width:'100%', background:'var(--surface2)', border:'1px solid var(--border)', borderRadius:10, padding:'8px 12px 8px 34px', fontSize:13, color:'var(--text)', outline:'none', boxSizing:'border-box' }}
-              onFocus={e=>e.target.style.borderColor='#4facfe'}
-              onBlur={e=>e.target.style.borderColor='var(--border)'} />
-          </div>
-        </div>
-        <div style={{ flex:1, overflowY:'auto' }}>
-          {loading ? (
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'center', padding:48 }}>
-              <div style={{ width:28, height:28, border:'3px solid var(--border)', borderTopColor:'#4facfe', borderRadius:'50%', animation:'spin 0.8s linear infinite' }} />
-            </div>
-          ) : filtered.length === 0 ? (
-            <div style={{ textAlign:'center', padding:'48px 20px', color:'var(--muted)' }}>
-              <span className="material-symbols-outlined" style={{ fontSize:40, display:'block', marginBottom:10, color:'var(--border)' }}>{mode==='followers'?'group':'person_search'}</span>
-              <div style={{ fontSize:14, fontWeight:600, color:'var(--text)', marginBottom:4 }}>{search ? 'No results' : (mode==='followers' ? 'No followers yet' : 'Not following anyone yet')}</div>
-              {!search && <div style={{ fontSize:12 }}>{mode==='followers' ? 'Share your profile to get followers.' : 'Discover people on the feed.'}</div>}
-            </div>
-          ) : filtered.map((person, i) => {
-            const displayName = ((person.firstName||'') + ' ' + (person.lastName||'')).trim() || person.nationality || 'Traveller';
-            const initials = displayName.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-            const avatarSrc = person.profileImageUrl ? 'http://localhost:8089' + person.profileImageUrl : null;
-            const isRemoving = removing === person.id;
-            const isMe = person.id === currentUserId;
-            return (
-              <div key={person.id}
-                style={{ display:'flex', alignItems:'center', gap:12, padding:'12px 20px', borderBottom:'1px solid var(--border)', transition:'background 0.15s' }}
-                onMouseEnter={e=>e.currentTarget.style.background='var(--surface2)'}
-                onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
-                <div style={{ width:44, height:44, borderRadius:'50%', background:COLORS[i%COLORS.length], display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontWeight:700, fontSize:16, flexShrink:0, overflow:'hidden', border:'2px solid var(--border)' }}>
-                  {avatarSrc ? <img src={avatarSrc} alt="" style={{ width:'100%', height:'100%', objectFit:'cover' }} onError={e=>{e.target.style.display='none';}} /> : initials}
-                </div>
-                <div style={{ flex:1, overflow:'hidden' }}>
-                  <div style={{ fontSize:14, fontWeight:700, color:'var(--text)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
-                    {displayName}{isMe && <span style={{ marginLeft:6, fontSize:10, color:'#4facfe', fontWeight:600 }}>You</span>}
-                  </div>
-                  <div style={{ fontSize:11, color:'var(--muted)' }}>
-                    {person.nationality && <span>{'🌍 '+person.nationality}</span>}
-                    {person.travel?.destination && <span style={{ marginLeft:8 }}>{'📍 '+person.travel.destination}</span>}
-                  </div>
-                </div>
-                {!isMe && (
-                  <div style={{ display:'flex', gap:6, flexShrink:0 }}>
-                    {mode==='followers' && (
-                      <button onClick={()=>handleFollow(person)}
-                        style={{ padding:'5px 12px', borderRadius:8, background:'rgba(79,172,254,0.1)', border:'1px solid rgba(79,172,254,0.25)', color:'#4facfe', fontSize:12, fontWeight:700, cursor:'pointer', transition:'all 0.15s' }}
-                        onMouseEnter={e=>{e.currentTarget.style.background='#4facfe';e.currentTarget.style.color='white';}}
-                        onMouseLeave={e=>{e.currentTarget.style.background='rgba(79,172,254,0.1)';e.currentTarget.style.color='#4facfe';}}>
-                        Follow
-                      </button>
-                    )}
-                    <button onClick={()=>handleRemove(person)} disabled={isRemoving}
-                      style={{ padding:'5px 12px', borderRadius:8, background:'rgba(239,68,68,0.08)', border:'1px solid rgba(239,68,68,0.2)', color:'#ef4444', fontSize:12, fontWeight:700, cursor:isRemoving?'not-allowed':'pointer', opacity:isRemoving?0.6:1, transition:'all 0.15s' }}
-                      onMouseEnter={e=>{if(!isRemoving){e.currentTarget.style.background='#ef4444';e.currentTarget.style.color='white';}}}
-                      onMouseLeave={e=>{e.currentTarget.style.background='rgba(239,68,68,0.08)';e.currentTarget.style.color='#ef4444';}}>
-                      {isRemoving ? '...' : 'Remove'}
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Followers / Following Modal ────────────────────────────
+// â”€â”€ Followers / Following Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpdate }) {
   const [list, setList]         = useState([]);
   const [loading, setLoading]   = useState(true);
@@ -1023,8 +490,8 @@ function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpda
                     {name}{isMe && <span style={{ marginLeft:6, fontSize:10, color:'#4facfe', fontWeight:600 }}>You</span>}
                   </div>
                   <div style={{ fontSize:11, color:'var(--muted)' }}>
-                    {person.nationality && <span>{'🌍 ' + person.nationality}</span>}
-                    {person.travel?.destination && <span style={{ marginLeft:8 }}>{'📍 ' + person.travel.destination}</span>}
+                    {person.nationality && <span>{'ðŸŒ ' + person.nationality}</span>}
+                    {person.travel?.destination && <span style={{ marginLeft:8 }}>{'ðŸ“ ' + person.travel.destination}</span>}
                   </div>
                 </div>
                 {!isMe && (
@@ -1172,7 +639,7 @@ export default function PassengerProfile() {
   if (loading || !profile) return (
     <div style={{ height: 'calc(100vh - 85px)', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
       <div style={{ width: 48, height: 48, border: '4px solid var(--border)', borderTopColor: '#4facfe', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-      <div style={{ fontSize: 14, color: 'var(--muted)', fontWeight: 500 }}>Loading profile…</div>
+      <div style={{ fontSize: 14, color: 'var(--muted)', fontWeight: 500 }}>Loading profileâ€¦</div>
       <style>{'@keyframes spin{to{transform:rotate(360deg)}}'}</style>
     </div>
   );
@@ -1183,7 +650,7 @@ export default function PassengerProfile() {
   return (
     <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 85px)', color: 'var(--text)', fontFamily: 'Inter,sans-serif' }}>
 
-      {/* â”€â”€ HEADER â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ HEADER Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div style={{ maxWidth: 935, margin: '0 auto', padding: '32px 20px 0' }}>
         <div style={{ display: 'flex', gap: 60, alignItems: 'flex-start', marginBottom: 28 }}>
 
@@ -1242,7 +709,7 @@ export default function PassengerProfile() {
           </div>
         </div>
 
-        {/* â”€â”€ STORIES ROW â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ STORIES ROW Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div style={{ display: 'flex', gap: 20, paddingBottom: 24, borderBottom: '1px solid var(--border)', overflowX: 'auto', scrollbarWidth: 'none' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, cursor: 'pointer', flexShrink: 0 }} onClick={() => setShowNewPost(true)}>
             <div style={{ width: 66, height: 66, borderRadius: '50%', background: 'var(--input-bg)', border: '2px dashed rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>+</div>
@@ -1262,7 +729,7 @@ export default function PassengerProfile() {
           ))}
         </div>
 
-        {/* â”€â”€ TABS â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ TABS Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: 0, borderBottom: '1px solid var(--border)' }}>
           {[
             { id: 'posts', icon: 'grid_on',        label: 'Posts' },
@@ -1278,7 +745,7 @@ export default function PassengerProfile() {
         </div>
       </div>
 
-      {/* â”€â”€ POSTS GRID â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ POSTS GRID Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'posts' && (
         <div style={{ maxWidth: 935, margin: '0 auto', padding: '4px 20px 40px' }}>
           {posts.length === 0 ? (
@@ -1311,7 +778,7 @@ export default function PassengerProfile() {
         </div>
       )}
 
-      {/* â”€â”€ SAVED â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ SAVED Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'saved' && (
         <div style={{ maxWidth: 935, margin: '0 auto', padding: '80px 20px', textAlign: 'center', color: 'var(--muted)' }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>B</div>
@@ -1320,7 +787,7 @@ export default function PassengerProfile() {
         </div>
       )}
 
-      {/* â”€â”€ MAP â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ MAP Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'map' && (
         <div style={{ maxWidth: 935, margin: '0 auto', padding: '20px 20px 40px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 16, height: 600 }}>
