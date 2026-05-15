@@ -105,7 +105,7 @@ export default function PassengerMessenger() {
     setIsRecording(false);
   };
 
-  const glass = { background: 'rgba(255, 255, 255, 0.03)', backdropFilter: 'blur(30px)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '24px' };
+  const glass = { background: 'var(--glass-bg)', backdropFilter: 'blur(30px)', border: '1px solid var(--glass-border)', borderRadius: '24px' };
 
   if (loading) return <div style={{ height: '100vh', background: '#0a0a12' }}></div>;
 
@@ -116,10 +116,10 @@ export default function PassengerMessenger() {
         .contact-card:hover, .contact-card.active { background: rgba(79, 172, 254, 0.15); transform: translateX(8px); }
         .msg-bubble { max-width: 65%; padding: 14px 20px; borderRadius: 20px; margin-bottom: 12px; position: relative; }
         .msg-sender { align-self: flex-end; background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border-radius: 20px 20px 4px 20px; }
-        .msg-receiver { align-self: flex-start; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px 20px 20px 4px; }
-        .msg-call-log { align-self: center; background: rgba(255,255,255,0.05); padding: 8px 20px; borderRadius: 30px; font-size: 11px; fontWeight: 900; letterSpacing: 1px; color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.2); }
+        .msg-receiver { align-self: flex-start; background: var(--glass-highlight); border: 1px solid var(--glass-border); border-radius: 20px 20px 20px 4px; }
+        .msg-call-log { align-self: center; background: var(--glass-highlight); padding: 8px 20px; borderRadius: 30px; font-size: 11px; fontWeight: 900; letterSpacing: 1px; color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.2); }
         .msg-img { width: 100%; borderRadius: 12px; marginBottom: 10px; cursor: pointer; }
-        .action-btn { width: 44px; height: 44px; borderRadius: 12px; background: rgba(255,255,255,0.05); display: flex; alignItems: center; justifyContent: center; cursor: pointer; transition: 0.3s; }
+        .action-btn { width: 44px; height: 44px; borderRadius: 12px; background: var(--glass-highlight); display: flex; alignItems: center; justifyContent: center; cursor: pointer; transition: 0.3s; }
         .action-btn:hover { background: #4facfe; transform: translateY(-3px); }
         .recording-pulse { animation: pulse 1.5s infinite; color: #ef4444 !important; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
@@ -129,14 +129,14 @@ export default function PassengerMessenger() {
         
         {/* CONTACTS */}
         <div style={{ ...glass, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-           <div style={{ padding: '30px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between' }}>
+           <div style={{ padding: '30px', borderBottom: '1px solid var(--glass-highlight)', display: 'flex', justifyContent: 'space-between' }}>
               <h2 style={{ fontSize: '18px', fontWeight: 900, letterSpacing: '3px' }}>NEURAL LINKS</h2>
               <span className="material-symbols-outlined" style={{ color: '#4facfe' }}>radar</span>
            </div>
            <div style={{ flex: 1, overflowY: 'auto', padding: '15px' }}>
               {contacts.map(c => (
                 <div key={c.id} onClick={() => setSelectedUser(c)} className={`contact-card ${selectedUser?.id === c.id ? 'active' : ''}`}>
-                   <div style={{ width: 48, height: 48, borderRadius: '15px', border: '2px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
+                   <div style={{ width: 48, height: 48, borderRadius: '15px', border: '2px solid var(--glass-border)', overflow: 'hidden' }}>
                       {c.profileImageUrl ? <img src={`${API_BASE}${c.profileImageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div style={{ width: '100%', height: '100%', background: '#4facfe', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>{c.firstName[0]}</div>}
                    </div>
                    <div style={{ flex: 1 }}><div style={{ fontWeight: 800, fontSize: '15px' }}>{c.firstName}</div><div style={{ fontSize: '11px', opacity: 0.4 }}>{c.nationality}</div></div>
@@ -149,7 +149,7 @@ export default function PassengerMessenger() {
         <div style={{ ...glass, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
            {selectedUser ? (
              <>
-               <div style={{ padding: '20px 40px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.02)' }}>
+               <div style={{ padding: '20px 40px', borderBottom: '1px solid var(--glass-highlight)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--glass-bg)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                      <div style={{ width: 46, height: 46, borderRadius: '50%', border: '3px solid #4facfe', overflow: 'hidden' }}>{selectedUser.profileImageUrl && <img src={`${API_BASE}${selectedUser.profileImageUrl}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}</div>
                      <div style={{ fontWeight: 900, fontSize: '18px' }}>{selectedUser.firstName}</div>
@@ -180,7 +180,7 @@ export default function PassengerMessenger() {
                   ))}
                </div>
 
-               <div style={{ padding: '20px 40px', background: 'rgba(0,0,0,0.2)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+               <div style={{ padding: '20px 40px', background: 'var(--glass-shadow)', borderTop: '1px solid var(--glass-highlight)' }}>
                   <div style={{ display: 'flex', gap: '15px', marginBottom: '15px' }}>
                      {EMOJIS.map(e => <span key={e} onClick={() => handleSend(null, e)} style={{ cursor: 'pointer', fontSize: '20px' }}>{e}</span>)}
                      <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px' }}>
@@ -191,7 +191,7 @@ export default function PassengerMessenger() {
                      </div>
                   </div>
                   <form onSubmit={handleSend} style={{ display: 'flex', gap: '20px' }}>
-                     <input value={newMessage} onChange={e => setNewMessage(e.target.value)} placeholder="Type encrypted message..." style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: 'none', padding: '18px 25px', borderRadius: '20px', color: '#fff', fontSize: '15px', outline: 'none' }} />
+                     <input value={newMessage} onChange={e => setNewMessage(e.target.value)} placeholder="Type encrypted message..." style={{ flex: 1, background: 'var(--glass-highlight)', border: 'none', padding: '18px 25px', borderRadius: '20px', color: '#fff', fontSize: '15px', outline: 'none' }} />
                      <button type="submit" style={{ background: '#4facfe', color: '#fff', border: 'none', borderRadius: '18px', width: '60px', height: '60px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span className="material-symbols-outlined">send</span></button>
                   </form>
                </div>

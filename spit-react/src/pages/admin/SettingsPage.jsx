@@ -33,7 +33,7 @@ export default function SettingsPage() {
   const { user } = useAuth();
   const { toggle: toggleTheme, isDark } = useTheme();
   const [active, setActive] = useState('General');
-  const [apiUrl, setApiUrl] = useState(import.meta.env.VITE_API_URL || 'http://localhost:8083/api');
+  const [apiUrl, setApiUrl] = useState(import.meta.env.VITE_API_URL || 'http://localhost:8084/api');
   const [connStatus, setConnStatus] = useState('');
   const [toggles, setToggles] = useState({
     autoRecs: true, liveRefresh: true, sessionTimeout: true,

@@ -102,7 +102,7 @@ export default function LoginPage() {
           }}>
             Smart Transit Intelligence
           </div>
-          <h1 style={{ fontSize: '64px', fontWeight: 900, fontFamily: 'Manrope, sans-serif', color: 'white', lineHeight: 1.05, marginBottom: '24px', textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+          <h1 style={{ fontSize: '64px', fontWeight: 900, fontFamily: 'Manrope, sans-serif', color: 'white', lineHeight: 1.05, marginBottom: '24px', textShadow: '0 10px 30px var(--glass-shadow)' }}>
             Discover Tunisia<br />
             <span style={{ color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.5)' }}>On Your Terms</span>
           </h1>
@@ -114,7 +114,7 @@ export default function LoginPage() {
               <span style={{ fontSize: '24px', fontWeight: 900, color: 'white' }}>10k+</span>
               <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>Daily Users</span>
             </div>
-            <div style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.1)' }} />
+            <div style={{ width: '1px', height: '30px', background: 'var(--glass-border)' }} />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ fontSize: '24px', fontWeight: 900, color: 'white' }}>98%</span>
               <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>Accuracy</span>
@@ -127,10 +127,10 @@ export default function LoginPage() {
       <div style={{
         position: 'absolute', right: 0, top: 0, bottom: 0,
         width: '45%', zIndex: 6,
-        background: 'rgba(255,255,255,0.02)',
+        background: 'var(--glass-bg)',
         backdropFilter: 'blur(40px)',
         WebkitBackdropFilter: 'blur(40px)',
-        borderLeft: '1px solid rgba(255,255,255,0.1)',
+        borderLeft: '1px solid var(--glass-border)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: '0 60px 0 100px',
         clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%)',
@@ -173,9 +173,9 @@ export default function LoginPage() {
               <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>Email Address</label>
               <input type="email" value={email} onChange={e => setEmail(e.target.value)}
                 placeholder="name@example.com" required
-                style={{ width: '100%', padding: '16px', borderRadius: '14px', border: '1.5px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.03)', fontSize: '15px', color: 'white', outline: 'none', fontFamily: 'Inter, sans-serif', transition: 'all 0.3s' }}
+                style={{ width: '100%', padding: '16px', borderRadius: '14px', border: '1.5px solid var(--glass-border)', background: 'var(--glass-bg)', fontSize: '15px', color: 'white', outline: 'none', fontFamily: 'Inter, sans-serif', transition: 'all 0.3s' }}
                 onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.background = 'rgba(255,255,255,0.07)'; }}
-                onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.background = 'rgba(255,255,255,0.03)'; }}
+                onBlur={e => { e.target.style.borderColor = 'var(--glass-border)'; e.target.style.background = 'var(--glass-bg)'; }}
               />
             </div>
 
@@ -188,9 +188,9 @@ export default function LoginPage() {
               <div style={{ position: 'relative' }}>
                 <input type={showPw ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)}
                   placeholder="••••••••" required
-                  style={{ width: '100%', padding: '16px 48px 16px 16px', borderRadius: '14px', border: '1.5px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.03)', fontSize: '15px', color: 'white', outline: 'none', fontFamily: 'Inter, sans-serif', transition: 'all 0.3s' }}
+                  style={{ width: '100%', padding: '16px 48px 16px 16px', borderRadius: '14px', border: '1.5px solid var(--glass-border)', background: 'var(--glass-bg)', fontSize: '15px', color: 'white', outline: 'none', fontFamily: 'Inter, sans-serif', transition: 'all 0.3s' }}
                   onFocus={e => { e.target.style.borderColor = 'var(--primary)'; e.target.style.background = 'rgba(255,255,255,0.07)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.background = 'rgba(255,255,255,0.03)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'var(--glass-border)'; e.target.style.background = 'var(--glass-bg)'; }}
                 />
                 <span className="material-symbols-outlined" onClick={() => setShowPw(p => !p)}
                   style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)', fontSize: '20px', cursor: 'pointer', userSelect: 'none' }}>

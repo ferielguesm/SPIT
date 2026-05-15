@@ -96,7 +96,7 @@ export default function PassengerDetailPage() {
                 <div style={{ width: 120, height: 120, borderRadius: '40px', background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '48px', fontWeight: 900, fontFamily: 'Manrope, sans-serif' }}>
                   {initials}
                 </div>
-                <div style={{ position: 'absolute', bottom: -16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '6px', background: 'var(--surface2)', padding: '6px 12px', borderRadius: '999px', border: '2px solid var(--surface)', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
+                <div style={{ position: 'absolute', bottom: -16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '6px', background: 'var(--surface2)', padding: '6px 12px', borderRadius: '999px', border: '2px solid var(--surface)', boxShadow: '0 4px 10px var(--glass-shadow)' }}>
                   {['call', 'chat', 'mail', 'work'].map(icon => (
                     <button key={icon} style={{ background: 'transparent', border: 'none', color: 'var(--text)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24 }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>{icon}</span>

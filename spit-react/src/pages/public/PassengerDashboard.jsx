@@ -181,7 +181,7 @@ function GuideModal({ dest, guideTab, setGuideTab, onClose }) {
   ];
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, backdropFilter: 'blur(4px)' }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', borderRadius: 24, width: '100%', maxWidth: 620, maxHeight: '88vh', display: 'flex', flexDirection: 'column', border: '1px solid var(--border)', boxShadow: '0 24px 64px rgba(0,0,0,0.4)', overflow: 'hidden' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', borderRadius: 24, width: '100%', maxWidth: 620, maxHeight: '88vh', display: 'flex', flexDirection: 'column', border: '1px solid var(--border)', boxShadow: '0 24px 64px var(--glass-shadow)', overflow: 'hidden' }}>
 
         {/* Header */}
         <div style={{ padding: '24px 28px 0', background: 'linear-gradient(135deg, var(--primary) 0%, #166874 100%)', color: 'white', flexShrink: 0 }}>
@@ -191,11 +191,11 @@ function GuideModal({ dest, guideTab, setGuideTab, onClose }) {
               <h2 style={{ fontSize: 24, fontWeight: 900, margin: '4px 0 6px', fontFamily: 'Manrope, sans-serif' }}>Guide for {dest}</h2>
               <p style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.5, maxWidth: 420 }}>{guide.tagline}</p>
             </div>
-            <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', width: 32, height: 32, borderRadius: '50%', cursor: 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>Ã—</button>
+            <button onClick={onClose} style={{ background: 'var(--glass-border)', border: 'none', color: 'white', width: 32, height: 32, borderRadius: '50%', cursor: 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>Ã—</button>
           </div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingBottom: 16, marginTop: 10 }}>
             {[{ icon: 'wb_sunny', text: guide.weather }, { icon: 'payments', text: guide.currency }].map(({ icon, text }) => (
-              <div key={icon} style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(255,255,255,0.15)', borderRadius: 999, padding: '4px 10px', fontSize: 11, fontWeight: 600 }}>
+              <div key={icon} style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'var(--glass-border)', borderRadius: 999, padding: '4px 10px', fontSize: 11, fontWeight: 600 }}>
                 <span className="material-symbols-outlined" style={{ fontSize: 14 }}>{icon}</span>
                 {text}
               </div>
@@ -351,7 +351,7 @@ function CurrencyModal({ onClose }) {
 
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, backdropFilter: 'blur(4px)' }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', borderRadius: 24, width: '100%', maxWidth: 520, border: '1px solid var(--border)', boxShadow: '0 24px 64px rgba(0,0,0,0.4)', overflow: 'hidden' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', borderRadius: 24, width: '100%', maxWidth: 520, border: '1px solid var(--border)', boxShadow: '0 24px 64px var(--glass-shadow)', overflow: 'hidden' }}>
 
         {/* Header */}
         <div style={{ padding: '20px 24px', background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)', color: 'white' }}>

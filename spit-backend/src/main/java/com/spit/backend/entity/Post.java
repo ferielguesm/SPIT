@@ -36,16 +36,16 @@ public class Post {
     private String authorColor;
     private String authorProfileImageUrl;
 
-    @Column(nullable = false)
+    @Column
     private Integer likes = 0;
 
     @ElementCollection
     private Set<Long> likedByPassengerIds = new HashSet<>();
 
-    @Column(nullable = false)
+    @Column
     private Integer comments = 0;
 
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

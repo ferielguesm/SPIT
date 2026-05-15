@@ -28,7 +28,7 @@ function makeMarkerIcon(color, emoji, active) {
   const fontSize = active ? 18 : 15;
   return L.divIcon({
     className: '',
-    html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50% 50% 50% 0;background:' + color + ';transform:rotate(-45deg);border:' + border + ';box-shadow:0 4px 16px rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="transform:rotate(45deg);font-size:' + fontSize + 'px;line-height:1">' + emoji + '</span></div>',
+    html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50% 50% 50% 0;background:' + color + ';transform:rotate(-45deg);border:' + border + ';box-shadow:0 4px 16px var(--glass-shadow);display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="transform:rotate(45deg);font-size:' + fontSize + 'px;line-height:1">' + emoji + '</span></div>',
     iconSize: [size, size],
     iconAnchor: [size / 2, size],
   });
@@ -241,7 +241,7 @@ function NewPostModal({ passenger, passengerId, onClose, onCreated }) {
           <button onClick={onClose} style={{ flex: 1, padding: '12px', borderRadius: 10, background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           <button onClick={submit} disabled={loading || !canPost}
             style={{ flex: 2, padding: '12px', borderRadius: 10, border: 'none', color: 'var(--text)', fontSize: 14, fontWeight: 800, cursor: (loading || !canPost) ? 'not-allowed' : 'pointer',
-              background: canPost ? 'linear-gradient(135deg,#4facfe,#00f2fe)' : 'rgba(255,255,255,0.1)',
+              background: canPost ? 'linear-gradient(135deg,#4facfe,#00f2fe)' : 'var(--glass-border)',
               opacity: loading ? 0.7 : 1,
               transition: 'all 0.2s',
             }}>
@@ -434,7 +434,7 @@ function FollowersModal({ mode, profileId, currentUserId, onClose, onProfileUpda
 
   return (
     <div onClick={onClose} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.75)', zIndex:300, display:'flex', alignItems:'center', justifyContent:'center', padding:16, backdropFilter:'blur(4px)' }}>
-      <div onClick={e => e.stopPropagation()} style={{ background:'var(--surface)', border:'1px solid var(--border)', borderRadius:20, width:'100%', maxWidth:440, maxHeight:'80vh', display:'flex', flexDirection:'column', overflow:'hidden', boxShadow:'0 24px 64px rgba(0,0,0,0.4)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background:'var(--surface)', border:'1px solid var(--border)', borderRadius:20, width:'100%', maxWidth:440, maxHeight:'80vh', display:'flex', flexDirection:'column', overflow:'hidden', boxShadow:'0 24px 64px var(--glass-shadow)' }}>
 
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'18px 20px', borderBottom:'1px solid var(--border)' }}>
           <h2 style={{ fontSize:17, fontWeight:800, color:'var(--text)', margin:0 }}>
@@ -829,7 +829,7 @@ export default function PassengerProfile() {
               {routeInfo && (
                 <div style={{ background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 16, justifyContent: 'center' }}>
                   <div style={{ textAlign: 'center' }}><div style={{ fontSize: 18, fontWeight: 900, color: '#22c55e' }}>{routeInfo.distance} km</div><div style={{ fontSize: 9, color: 'var(--muted)', fontWeight: 700 }}>DISTANCE</div></div>
-                  <div style={{ width: 1, background: 'rgba(255,255,255,0.1)' }} />
+                  <div style={{ width: 1, background: 'var(--glass-border)' }} />
                   <div style={{ textAlign: 'center' }}><div style={{ fontSize: 18, fontWeight: 900, color: '#22c55e' }}>{routeInfo.duration} min</div><div style={{ fontSize: 9, color: 'var(--muted)', fontWeight: 700 }}>BY CAR</div></div>
                 </div>
               )}
@@ -846,7 +846,7 @@ export default function PassengerProfile() {
                 {filteredLandmarks.map(place => (
                   <div key={place.id} onClick={() => handleSelectPlace(place)}
                     style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 8px', borderRadius: 8, cursor: 'pointer', transition: 'all 0.15s', background: selected.id === place.id ? (place.color + '20') : 'transparent', border: selected.id === place.id ? ('1px solid ' + place.color + '40') : '1px solid transparent' }}
-                    onMouseEnter={e => { if (selected.id !== place.id) e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
+                    onMouseEnter={e => { if (selected.id !== place.id) e.currentTarget.style.background = 'var(--glass-highlight)'; }}
                     onMouseLeave={e => { if (selected.id !== place.id) e.currentTarget.style.background = 'transparent'; }}>
                     <span style={{ fontSize: 16 }}>{place.emoji}</span>
                     <div style={{ flex: 1, overflow: 'hidden' }}>

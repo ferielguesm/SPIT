@@ -40,7 +40,7 @@ export default function HomePage() {
     });
 
     // Fetch live flights (OpenSky)
-    fetch('https://opensky-network.org/api/states/all?lamin=30&lomin=7&lamax=38&lomax=12')
+    fetch('http://localhost:8084/api/airspace/live')
       .then(r => r.json())
       .then(data => {
         setStats(prev => ({ ...prev, flights: data.states?.length || '12' }));
@@ -69,14 +69,14 @@ export default function HomePage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(4,8,20,0.85) 0%, rgba(4,8,20,0.7) 50%, rgba(4,8,20,0.95) 100%)' }} />
 
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 24px', maxWidth: '800px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(36,70,212,0.15)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px', padding: '6px 16px', fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '24px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(36,70,212,0.15)', backdropFilter: 'blur(8px)', border: '1px solid var(--glass-border)', borderRadius: '999px', padding: '6px 16px', fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '24px' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 2s infinite', display: 'inline-block' }} />
             Smart Passenger Intelligence Tunisia
           </div>
           <h1 style={{ fontSize: '72px', fontWeight: 900, fontFamily: 'Manrope, sans-serif', lineHeight: 1.05, marginBottom: '24px', textShadow: '0 4px 40px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6)', color: 'white' }}>
             Discover Tunisia<br /><span style={{ color: 'var(--accent)' }}>Like Never Before</span>
           </h1>
-          <p style={{ fontSize: '18px', color: 'rgba(203,213,225,0.85)', lineHeight: 1.7, maxWidth: '560px', margin: '0 auto 40px', textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}>
+          <p style={{ fontSize: '18px', color: 'rgba(203,213,225,0.85)', lineHeight: 1.7, maxWidth: '560px', margin: '0 auto 40px', textShadow: '0 2px 12px var(--glass-shadow)' }}>
             Smart platform-powered travel recommendations tailored to your interests, budget, and journey — from the Sahara to the sea.
           </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>

@@ -52,7 +52,7 @@ export default function AboutPage() {
         </video>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(4,8,20,0.85) 0%, rgba(4,8,20,0.7) 50%, rgba(4,8,20,0.95) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 24px', maxWidth: '720px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(36,70,212,0.15)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px', padding: '6px 16px', fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '20px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(36,70,212,0.15)', backdropFilter: 'blur(8px)', border: '1px solid var(--glass-border)', borderRadius: '999px', padding: '6px 16px', fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '20px' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 2s infinite', display: 'inline-block' }} />
             About SPIT
           </div>
@@ -72,7 +72,7 @@ export default function AboutPage() {
               10%, 90% { opacity: 1; }
             }
           `}</style>
-          <p style={{ fontSize: '17px', color: 'rgba(203,213,225,0.85)', lineHeight: 1.7, textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
+          <p style={{ fontSize: '17px', color: 'rgba(203,213,225,0.85)', lineHeight: 1.7, textShadow: '0 2px 12px var(--glass-shadow)' }}>
             A final-year academic project combining smart platform recommendations and smart UX to deliver personalized travel experiences for every passenger.
           </p>
         </div>

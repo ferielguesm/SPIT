@@ -234,113 +234,293 @@ function PostComposer({ passenger, passengerId }) {
   );
 }
 
-// ── Comment Section ────────────────────────────────────────
-function CommentSection({ postId, passengerId, passenger, visible }) {
-  const [comments, setComments] = useState([]);
+// ── Reply Section ──────────────────────────────────────────
+function ReplySection({ commentId, passengerId, passenger, visible }) {
+  const [replies, setReplies] = useState([]);
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [editId, setEditId] = useState(null);
-  const [editText, setEditText] = useState('');
-  const inputRef = useRef();
+
+  const fetchReplies = useCallback(async () => {
+    try {
+      const d = await ReplyAPI.getByComment(commentId);
+      setReplies(Array.isArray(d) ? d : []);
+    } catch { /* silent */ }
+  }, [commentId]);
 
   useEffect(() => {
-    if (!visible) return;
-    CommentAPI.getByPost(postId).then(d => setComments(Array.isArray(d) ? d : [])).catch(() => {});
-  }, [postId, visible]);
+    if (visible && commentId) fetchReplies();
+  }, [commentId, visible, fetchReplies]);
+
+  // Real-time reply updates
+  useWebSocket(`/topic/comments/${commentId}/replies`, (newReply) => {
+    setReplies(prev => prev.some(r => r.id === newReply.id) ? prev : [...prev, newReply]);
+  });
 
   const submit = async () => {
     if (!text.trim()) return;
     setLoading(true);
     try {
-      const c = await CommentAPI.add(postId, passengerId, text);
-      setComments(prev => [...prev, c]);
+      const newReply = await ReplyAPI.add(commentId, passengerId, text);
+      setReplies(prev => prev.some(r => r.id === newReply.id) ? prev : [...prev, newReply]);
       setText('');
-    } catch { toast.error('Could not post comment'); }
+    } catch { toast.error('Could not post reply'); }
     finally { setLoading(false); }
   };
 
   const remove = async (id) => {
     try {
+      await ReplyAPI.delete(id);
+      setReplies(prev => prev.filter(r => r.id !== id));
+    } catch { toast.error('Could not delete reply'); }
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div style={{ marginLeft: 36, marginTop: 12, borderLeft: '2px solid var(--border)', paddingLeft: 16, animation: 'slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {replies.map((r, i) => (
+          <div key={r.id} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', animation: `fadeIn 0.3s ease ${i * 0.05}s both` }}>
+            <Avatar src={r.authorProfileImageUrl} initials={(r.authorName || '?').substring(0, 2).toUpperCase()} size={28} />
+            <div style={{ flex: 1 }}>
+              <div style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, var(--glass-bg) 100%)', backdropFilter: 'blur(16px)', border: '1px solid var(--glass-border)', borderRadius: '0 16px 16px 16px', padding: '10px 16px', display: 'inline-block', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
+                <span style={{ fontSize: 12, fontWeight: 900, color: 'var(--primary)', marginRight: 8 }}>{r.authorName}</span>
+                <span style={{ fontSize: 13, color: 'var(--text)', lineHeight: 1.5 }}>{r.content}</span>
+              </div>
+              <div style={{ display: 'flex', gap: 10, marginTop: 8, paddingLeft: 4, alignItems: 'center' }}>
+                <span style={{ fontSize: 11, color: 'var(--muted)', fontWeight: 600 }}>{timeAgo(r.createdAt)}</span>
+                {r.authorId == passengerId && (
+                  <button onClick={() => remove(r.id)} className="comment-action delete" style={{ cursor: 'pointer' }}>
+                    <span className="material-symbols-outlined">delete</span> Delete
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 10, marginTop: 14, alignItems: 'center' }}>
+        <input 
+          autoFocus
+          value={text} onChange={e => setText(e.target.value)}
+          placeholder="Write a reply…"
+          style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 20, padding: '8px 16px', fontSize: 12, color: 'var(--text)', outline: 'none', transition: 'all 0.2s' }}
+          onKeyDown={e => { if (e.key === 'Enter') submit(); }}
+        />
+        {text.trim() && (
+          <button onClick={submit} disabled={loading} style={{ background: 'var(--primary-grad)', color: 'white', border: 'none', borderRadius: 12, padding: '8px 16px', fontSize: 11, fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 12px rgba(74, 145, 158, 0.3)' }}>
+            {loading ? '…' : 'Reply'}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Comment Section ────────────────────────────────────────
+function CommentSection({ postId, passengerId, passenger, visible, user }) {
+  const [comments, setComments] = useState([]);
+  const [text, setText] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState('');
+  const [replyingTo, setReplyingTo] = useState(null);
+
+  const fetchComments = useCallback(async () => {
+    try {
+      const d = await CommentAPI.getByPost(postId);
+      setComments(Array.isArray(d) ? d : []);
+    } catch { /* silent */ }
+  }, [postId]);
+
+  useEffect(() => {
+    if (visible) fetchComments();
+  }, [visible, fetchComments]);
+
+  // Real-time: new comments
+  useWebSocket(`/topic/posts/${postId}/comments`, (newComment) => {
+    setComments(prev => prev.some(c => c.id === newComment.id) ? prev : [...prev, newComment]);
+  });
+
+  // Real-time: comment updates (likes, edits)
+  useWebSocket(`/topic/posts/${postId}/comments/update`, (updated) => {
+    setComments(prev => prev.map(c => c.id === updated.id ? updated : c));
+  });
+
+  // Real-time: comment deletion
+  useWebSocket(`/topic/posts/${postId}/comments/delete`, (deletedId) => {
+    setComments(prev => prev.filter(c => c.id !== deletedId));
+  });
+
+  const submit = async () => {
+    if (!text.trim()) return;
+    setLoading(true);
+    try {
+      const newComment = await CommentAPI.add(postId, passengerId, text);
+      setComments(prev => prev.some(c => c.id === newComment.id) ? prev : [...prev, newComment]);
+      setText('');
+    } catch { toast.error('Could not post comment'); }
+    finally { setLoading(false); }
+  };
+
+  const handleLikeComment = async (id) => {
+    try {
+      const updated = await CommentAPI.like(id, passengerId);
+      setComments(prev => prev.map(c => c.id === id ? updated : c));
+    } catch { /* silent */ }
+  };
+
+  const remove = async (id) => {
+    if (!confirm('Delete this comment?')) return;
+    try {
       await CommentAPI.delete(id);
       setComments(prev => prev.filter(c => c.id !== id));
+      toast.success('Comment deleted');
     } catch { toast.error('Could not delete'); }
   };
 
   const saveEdit = async (id) => {
     if (!editText.trim()) return;
     try {
-      const updated = await CommentAPI.update ? CommentAPI.update(id, editText) : null;
-      if (updated) setComments(prev => prev.map(c => c.id === id ? updated : c));
+      const updated = await CommentAPI.update(id, editText);
+      setComments(prev => prev.map(c => c.id === id ? updated : c));
       setEditId(null);
     } catch { toast.error('Could not update'); }
   };
 
-  const name = `${passenger?.firstName || ''}`.trim() || 'You';
-  const initials = name.substring(0, 2).toUpperCase();
+  const initials = (passenger?.firstName || 'P').substring(0, 1).toUpperCase();
 
   if (!visible) return null;
 
   return (
-    <div style={{ padding: '0 16px 12px', borderTop: '1px solid var(--border)' }}>
-      {/* Existing comments */}
-      <div style={{ maxHeight: 200, overflowY: 'auto', marginBottom: 10 }}>
-        {comments.map(c => (
-          <div key={c.id} style={{ display: 'flex', gap: 8, marginTop: 10, alignItems: 'flex-start' }}>
-            <Avatar src={c.authorProfileImageUrl} initials={(c.authorName || '?').substring(0, 2).toUpperCase()} size={28} color="#4A919E" />
-            <div style={{ flex: 1 }}>
-              {editId === c.id ? (
-                <div style={{ display: 'flex', gap: 6 }}>
-                  <input value={editText} onChange={e => setEditText(e.target.value)} autoFocus
-                    style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 8, padding: '4px 10px', fontSize: 13, color: 'var(--text)', outline: 'none' }}
-                    onKeyDown={e => { if (e.key === 'Enter') saveEdit(c.id); if (e.key === 'Escape') setEditId(null); }}
-                  />
-                  <button onClick={() => saveEdit(c.id)} style={{ background: '#4A919E', color: 'white', border: 'none', borderRadius: 6, padding: '4px 10px', fontSize: 12, cursor: 'pointer' }}>Save</button>
-                  <button onClick={() => setEditId(null)} style={{ background: 'var(--surface2)', color: 'var(--muted)', border: 'none', borderRadius: 6, padding: '4px 10px', fontSize: 12, cursor: 'pointer' }}>Cancel</button>
+    <div style={{ padding: '0 16px 24px', borderTop: '1px solid var(--border)', background: 'rgba(0,0,0,0.02)', animation: 'slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1)' }}>
+      <div style={{ maxHeight: 500, overflowY: 'auto', marginBottom: 16, paddingRight: 6, paddingTop: 12 }}>
+        {comments.map((c, i) => {
+          const isLiked = c.likedByPassengerIds?.includes(passengerId);
+          return (
+            <div key={c.id} style={{ marginTop: 20, animation: `slideUp 0.4s ease ${i * 0.05}s both` }}>
+              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                <Avatar src={c.authorProfileImageUrl} initials={(c.authorName || '?').substring(0, 2).toUpperCase()} size={36} />
+                <div style={{ flex: 1 }}>
+                  {editId === c.id ? (
+                    <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+                      <input value={editText} onChange={e => setEditText(e.target.value)} autoFocus
+                        style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--primary)', borderRadius: 16, padding: '10px 16px', fontSize: 13, color: 'var(--text)', outline: 'none', boxShadow: '0 0 15px rgba(74, 145, 158, 0.2)' }}
+                        onKeyDown={e => { if (e.key === 'Enter') saveEdit(c.id); if (e.key === 'Escape') setEditId(null); }}
+                      />
+                      <button onClick={() => saveEdit(c.id)} style={{ background: 'var(--primary-grad)', color: 'white', border: 'none', borderRadius: 12, padding: '0 20px', fontSize: 12, fontWeight: 800, cursor: 'pointer' }}>Save</button>
+                    </div>
+                  ) : (
+                    <div style={{ position: 'relative', display: 'inline-block', maxWidth: '100%' }}>
+                      <div style={{ background: 'linear-gradient(135deg, var(--glass-border) 0%, var(--glass-bg) 100%)', backdropFilter: 'blur(20px)', border: '1px solid var(--glass-border)', borderRadius: '0 20px 20px 20px', padding: '14px 18px', boxShadow: '0 8px 32px var(--glass-shadow)' }}>
+                        <div style={{ fontSize: 13, fontWeight: 900, color: 'var(--primary)', marginBottom: 6 }}>{c.authorName}</div>
+                        <div style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.6 }}>{c.content}</div>
+                      </div>
+                      {c.likes > 0 && (
+                        <div style={{ position: 'absolute', right: -12, bottom: -10, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 99, padding: '4px 10px', display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, fontWeight: 800, boxShadow: '0 6px 16px rgba(0,0,0,0.25)', animation: 'pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: 14, color: '#ef4444', fontVariationSettings: "'FILL' 1" }}>favorite</span> {c.likes}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  
+                  <div style={{ display: 'flex', gap: 12, marginTop: 12, paddingLeft: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: 11, color: 'var(--muted)', fontWeight: 600, marginRight: 4 }}>{timeAgo(c.createdAt)}</span>
+                    <button onClick={() => handleLikeComment(c.id)} className={`comment-action ${isLiked ? 'liked' : ''}`} style={{ cursor: 'pointer' }}>
+                      <span className="material-symbols-outlined" style={{ fontVariationSettings: isLiked ? "'FILL' 1" : "'FILL' 0" }}>favorite</span>
+                      {isLiked ? 'Liked' : 'Like'}
+                    </button>
+                    <button onClick={() => setReplyingTo(replyingTo === c.id ? null : c.id)} className="comment-action reply" style={{ cursor: 'pointer' }}>
+                      <span className="material-symbols-outlined">reply</span> Reply
+                    </button>
+                    {(c.authorId == passengerId || user?.type === 'admin') && (
+                      <>
+                        <button onClick={() => { setEditId(c.id); setEditText(c.content); }} className="comment-action edit" style={{ cursor: 'pointer' }}>
+                          <span className="material-symbols-outlined">edit</span> Edit
+                        </button>
+                        <button onClick={() => remove(c.id)} className="comment-action delete" style={{ cursor: 'pointer' }}>
+                          <span className="material-symbols-outlined">delete</span> Delete
+                        </button>
+                      </>
+                    )}
+                  </div>
+
+                  {replyingTo === c.id && (
+                    <ReplySection 
+                      commentId={c.id} 
+                      passengerId={passengerId} 
+                      passenger={passenger} 
+                      visible={true} 
+                    />
+                  )}
                 </div>
-              ) : (
-                <div style={{ background: 'var(--surface2)', borderRadius: '0 12px 12px 12px', padding: '6px 10px', display: 'inline-block', maxWidth: '100%' }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', marginRight: 6 }}>{c.authorName}</span>
-                  <span style={{ fontSize: 13, color: 'var(--text)' }}>{c.content}</span>
-                </div>
-              )}
-              <div style={{ display: 'flex', gap: 12, marginTop: 3, paddingLeft: 4 }}>
-                <span style={{ fontSize: 11, color: 'var(--muted)' }}>{timeAgo(c.createdAt)}</span>
-                {c.likes > 0 && <span style={{ fontSize: 11, color: 'var(--muted)' }}>{c.likes} likes</span>}
-                {c.authorId === passengerId && (
-                  <>
-                    <button onClick={() => { setEditId(c.id); setEditText(c.content); }} style={{ fontSize: 11, color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontWeight: 600 }}>Edit</button>
-                    <button onClick={() => remove(c.id)} style={{ fontSize: 11, color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontWeight: 600 }}>Delete</button>
-                  </>
-                )}
               </div>
             </div>
-          </div>
-        ))}
-        {comments.length === 0 && <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 8, textAlign: 'center' }}>No comments yet. Be the first!</p>}
+          );
+        })}
+        {comments.length === 0 && <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--muted)', fontSize: 14, fontWeight: 500 }}>No comments yet. Start the conversation!</div>}
       </div>
 
-      {/* Add comment */}
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-        <Avatar src={passenger?.profileImageUrl} initials={initials} color="#4A919E" size={28} />
-        <div style={{ flex: 1, display: 'flex', gap: 6, background: 'var(--surface2)', borderRadius: 20, padding: '6px 12px', alignItems: 'center' }}>
-          <input ref={inputRef} value={text} onChange={e => setText(e.target.value)}
-            placeholder="Add a comment…"
-            style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 13, color: 'var(--text)', fontFamily: 'Inter, sans-serif' }}
+      <div style={{ display: 'flex', gap: 14, alignItems: 'center', borderTop: '1px solid var(--border)', paddingTop: 20 }}>
+        <Avatar src={passenger?.profileImageUrl} initials={initials} size={40} />
+        <div style={{ flex: 1, display: 'flex', gap: 12, background: 'var(--surface2)', borderRadius: 30, padding: '12px 20px', alignItems: 'center', boxShadow: 'inset 0 2px 5px var(--glass-shadow)', border: '1px solid var(--border)', transition: 'border-color 0.3s' }}>
+          <input 
+            value={text} onChange={e => setText(e.target.value)}
+            placeholder={`Comment as ${passenger?.firstName || 'traveller'}…`}
+            style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 14, color: 'var(--text)', fontFamily: 'Inter, sans-serif' }}
+            onFocus={e => e.currentTarget.parentElement.style.borderColor = 'var(--primary)'}
+            onBlur={e => e.currentTarget.parentElement.style.borderColor = 'var(--border)'}
             onKeyDown={e => { if (e.key === 'Enter') submit(); }}
           />
           {text.trim() && (
-            <button onClick={submit} disabled={loading} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4A919E', fontWeight: 700, fontSize: 13, padding: 0 }}>
+            <button onClick={submit} disabled={loading} style={{ background: 'var(--primary-grad)', color: 'white', border: 'none', borderRadius: 14, padding: '6px 18px', fontWeight: 900, fontSize: 13, cursor: 'pointer', boxShadow: '0 4px 12px rgba(74, 145, 158, 0.3)' }}>
               {loading ? '…' : 'Post'}
             </button>
           )}
         </div>
       </div>
+
+      <style>{`
+        .comment-action { 
+          display: flex; 
+          align-items: center; 
+          gap: 6px; 
+          padding: 6px 12px; 
+          border-radius: 20px; 
+          background: var(--glass-bg); 
+          border: 1px solid var(--glass-highlight); 
+          color: var(--text); 
+          font-weight: 700; 
+          font-size: 11px; 
+          transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .comment-action .material-symbols-outlined { font-size: 14px; }
+        .comment-action:hover { 
+          background: var(--glass-border); 
+          transform: translateY(-2px); 
+          box-shadow: 0 4px 12px var(--glass-shadow); 
+          border-color: var(--glass-border);
+        }
+        .comment-action.liked { 
+          color: #ef4444; 
+          background: rgba(239, 68, 68, 0.15); 
+          border-color: rgba(239, 68, 68, 0.3);
+        }
+        .comment-action.liked:hover { background: rgba(239, 68, 68, 0.25); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+        .comment-action.reply:hover { color: var(--primary); background: rgba(74, 145, 158, 0.15); border-color: var(--primary); }
+        .comment-action.edit:hover { color: #f59e0b; background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; }
+        .comment-action.delete:hover { color: #ef4444; background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
+        
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pop { 0% { transform: scale(0.5); } 70% { transform: scale(1.3); } 100% { transform: scale(1); } }
+      `}</style>
     </div>
   );
 }
 
 // ── Post Card ──────────────────────────────────────────────
-function PostCard({ post, passengerId, passenger, onLike, onDelete, onUpdate }) {
+function PostCard({ post, passengerId, passenger, onLike, onDelete, onUpdate, user }) {
   const [showComments, setShowComments] = useState(false);
   const [editing, setEditing] = useState(false);
   const [editText, setEditText] = useState(post.content);
@@ -467,7 +647,7 @@ function PostCard({ post, passengerId, passenger, onLike, onDelete, onUpdate }) 
       </div>
 
       {/* Comments */}
-      <CommentSection postId={post.id} passengerId={passengerId} passenger={passenger} visible={showComments} />
+      <CommentSection postId={post.id} passengerId={passengerId} passenger={passenger} visible={showComments} user={user} />
     </div>
   );
 }
@@ -511,7 +691,7 @@ function RightSidebar({ passenger, passengerId, allPassengers, user }) {
   const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
 
   return (
-    <aside style={{ width: 300, flexShrink: 0 }}>
+    <aside className="right-sidebar">
       {/* Current user */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
         <Link to="/profile" style={{ textDecoration: 'none' }}>
@@ -574,11 +754,11 @@ function RightSidebar({ passenger, passengerId, allPassengers, user }) {
       {/* Suggestions */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
         <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Suggestions for you</span>
-        {allSuggestions.length > 5 && (
-          <button onClick={() => setShowAll(v => !v)}
-            style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            {showAll ? 'Show less' : `See all (${allSuggestions.length})`}
-          </button>
+        {allSuggestions.length > 0 && (
+          <Link to="/suggestions"
+            style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', textDecoration: 'none' }}>
+            See all ({allSuggestions.length})
+          </Link>
         )}
       </div>
 
@@ -671,7 +851,7 @@ export default function PassengerFeed() {
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: '24px 16px 40px', display: 'grid', gridTemplateColumns: '1fr 300px', gap: 32 }}>
+      <div className="feed-grid" style={{ maxWidth: 960, margin: '0 auto', padding: '24px 16px 40px' }}>
 
         {/* ── CENTER ── */}
         <main style={{ minWidth: 0 }}>
@@ -715,6 +895,7 @@ export default function PassengerFeed() {
                 onLike={handleLike}
                 onDelete={handleDelete}
                 onUpdate={handleUpdate}
+                user={user}
               />
             ))
           )}

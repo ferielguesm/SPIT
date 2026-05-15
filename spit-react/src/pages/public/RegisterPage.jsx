@@ -55,8 +55,8 @@ const COUNTRIES = [
 // ── Styled Components (Inline) ───────────────────────────
 const inpStyle = {
   width: '100%', padding: '14px 16px',
-  borderRadius: '14px', border: '1.5px solid rgba(255,255,255,0.1)',
-  background: 'rgba(255,255,255,0.03)', fontSize: '15px',
+  borderRadius: '14px', border: '1.5px solid var(--glass-border)',
+  background: 'var(--glass-bg)', fontSize: '15px',
   color: 'white', outline: 'none', fontFamily: 'Inter, sans-serif',
   transition: 'all 0.3s',
 };
@@ -69,8 +69,8 @@ const labelStyle = {
 
 const pillStyle = (selected) => ({
   padding: '10px 20px', borderRadius: '12px', cursor: 'pointer',
-  background: selected ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
-  border: `1.5px solid ${selected ? 'var(--accent)' : 'rgba(255,255,255,0.1)'}`,
+  background: selected ? 'var(--primary)' : 'var(--glass-highlight)',
+  border: `1.5px solid ${selected ? 'var(--accent)' : 'var(--glass-border)'}`,
   fontSize: '13px', fontWeight: 800,
   color: selected ? 'white' : 'rgba(255,255,255,0.5)',
   transition: 'all 0.3s',
@@ -150,7 +150,7 @@ export default function RegisterPage() {
   };
 
   const inpFocus = (e) => { e.target.style.borderColor = 'var(--primary)'; e.target.style.background = 'rgba(255,255,255,0.07)'; };
-  const inpBlur  = (e) => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.background = 'rgba(255,255,255,0.03)'; };
+  const inpBlur  = (e) => { e.target.style.borderColor = 'var(--glass-border)'; e.target.style.background = 'var(--glass-bg)'; };
 
   const handleTypeChange = (type) => { setAccType(type); setStep(1); setError(''); setErrors({}); };
 
@@ -184,7 +184,7 @@ export default function RegisterPage() {
       }} className="animate-slide-left">
         <div style={{ maxWidth: '520px' }}>
           <div style={{ display: 'inline-block', fontSize: '12px', fontWeight: 800, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '24px', padding: '6px 12px', background: 'rgba(255, 192, 56, 0.1)', borderRadius: '4px', borderLeft: '3px solid var(--accent)' }}>Join the Community</div>
-          <h1 style={{ fontSize: '64px', fontWeight: 900, fontFamily: 'Manrope, sans-serif', color: 'white', lineHeight: 1.05, marginBottom: '24px', textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+          <h1 style={{ fontSize: '64px', fontWeight: 900, fontFamily: 'Manrope, sans-serif', color: 'white', lineHeight: 1.05, marginBottom: '24px', textShadow: '0 10px 30px var(--glass-shadow)' }}>
             Start Your<br /> <span style={{ color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.5)' }}>Tunisia Journey</span>
           </h1>
           <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px', maxWidth: '440px' }}>Unlock a world of personalized travel intelligence. Our AI is ready to plan your perfect trip.</p>
@@ -195,10 +195,10 @@ export default function RegisterPage() {
               const done = n < step, active = n === step;
               return (
                 <div key={s} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: 36, height: 36, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 900, background: done ? 'var(--accent)' : active ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: done ? 'var(--bg)' : 'white', border: active ? '1px solid var(--accent)' : '1px solid rgba(255,255,255,0.1)', transition: 'all 0.4s', transform: active ? 'scale(1.1)' : 'scale(1)' }}>
+                  <div style={{ width: 36, height: 36, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 900, background: done ? 'var(--accent)' : active ? 'var(--primary)' : 'var(--glass-highlight)', color: done ? 'var(--bg)' : 'white', border: active ? '1px solid var(--accent)' : '1px solid var(--glass-border)', transition: 'all 0.4s', transform: active ? 'scale(1.1)' : 'scale(1)' }}>
                     {done ? <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>check</span> : n}
                   </div>
-                  {i < activeSteps.length - 1 && <div style={{ width: '20px', height: '2px', background: done ? 'var(--accent)' : 'rgba(255,255,255,0.1)' }} />}
+                  {i < activeSteps.length - 1 && <div style={{ width: '20px', height: '2px', background: done ? 'var(--accent)' : 'var(--glass-border)' }} />}
                 </div>
               );
             })}
@@ -209,8 +209,8 @@ export default function RegisterPage() {
       {/* ── Right Panel (Inclined) ── */}
       <div style={{
         position: 'absolute', right: 0, top: 0, bottom: 0, width: '45%', zIndex: 6,
-        background: 'rgba(255,255,255,0.02)', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
-        borderLeft: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: 'var(--glass-bg)', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
+        borderLeft: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: '0 60px 0 100px', overflowY: 'auto', clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%)',
       }} className="animate-slide-right">
         
@@ -228,7 +228,7 @@ export default function RegisterPage() {
             <div className="animate-fade-in">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
                 <h2 style={{ fontSize: '28px', fontWeight: 900, fontFamily: 'Manrope, sans-serif', color: 'white' }}>{activeSteps[step-1]}</h2>
-                <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '4px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div style={{ display: 'flex', background: 'var(--glass-highlight)', borderRadius: '12px', padding: '4px', border: '1px solid var(--glass-border)' }}>
                   <button type="button" onClick={() => handleTypeChange('passenger')} style={{ padding: '8px 14px', borderRadius: '8px', border: 'none', background: accType === 'passenger' ? 'var(--accent)' : 'transparent', color: accType === 'passenger' ? 'var(--bg)' : 'rgba(255,255,255,0.4)', fontSize: '12px', fontWeight: 800, cursor: 'pointer' }}>Passenger</button>
                   <button type="button" onClick={() => handleTypeChange('staff')} style={{ padding: '8px 14px', borderRadius: '8px', border: 'none', background: accType === 'staff' ? 'var(--accent)' : 'transparent', color: accType === 'staff' ? 'var(--bg)' : 'rgba(255,255,255,0.4)', fontSize: '12px', fontWeight: 800, cursor: 'pointer' }}>Staff</button>
                 </div>
@@ -239,25 +239,25 @@ export default function RegisterPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
                     <div>
                       <label style={labelStyle}>First Name</label>
-                      <input style={{...inpStyle, borderColor: errors.firstName ? '#ef4444' : 'rgba(255,255,255,0.1)'}} value={form.firstName} onChange={e => set('firstName', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
+                      <input style={{...inpStyle, borderColor: errors.firstName ? '#ef4444' : 'var(--glass-border)'}} value={form.firstName} onChange={e => set('firstName', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
                     </div>
                     <div>
                       <label style={labelStyle}>Last Name</label>
-                      <input style={{...inpStyle, borderColor: errors.lastName ? '#ef4444' : 'rgba(255,255,255,0.1)'}} value={form.lastName} onChange={e => set('lastName', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
+                      <input style={{...inpStyle, borderColor: errors.lastName ? '#ef4444' : 'var(--glass-border)'}} value={form.lastName} onChange={e => set('lastName', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
                     </div>
                   </div>
                   <div style={{ marginBottom: '20px' }}>
                     <label style={labelStyle}>Email Address</label>
-                    <input style={{...inpStyle, borderColor: errors.email ? '#ef4444' : 'rgba(255,255,255,0.1)'}} type="email" value={form.email} onChange={e => set('email', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
+                    <input style={{...inpStyle, borderColor: errors.email ? '#ef4444' : 'var(--glass-border)'}} type="email" value={form.email} onChange={e => set('email', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px' }}>
                     <div>
                       <label style={labelStyle}>Password</label>
-                      <input style={{...inpStyle, borderColor: errors.password ? '#ef4444' : 'rgba(255,255,255,0.1)'}} type="password" value={form.password} onChange={e => set('password', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
+                      <input style={{...inpStyle, borderColor: errors.password ? '#ef4444' : 'var(--glass-border)'}} type="password" value={form.password} onChange={e => set('password', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
                     </div>
                     <div>
                       <label style={labelStyle}>Confirm</label>
-                      <input style={{...inpStyle, borderColor: errors.confirmPassword ? '#ef4444' : 'rgba(255,255,255,0.1)'}} type="password" value={form.confirmPassword} onChange={e => set('confirmPassword', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
+                      <input style={{...inpStyle, borderColor: errors.confirmPassword ? '#ef4444' : 'var(--glass-border)'}} type="password" value={form.confirmPassword} onChange={e => set('confirmPassword', e.target.value)} onFocus={inpFocus} onBlur={inpBlur} />
                     </div>
                   </div>
                   <button type="button" onClick={next} style={{ width: '100%', padding: '16px', borderRadius: '14px', background: 'var(--primary)', color: 'white', border: 'none', fontSize: '16px', fontWeight: 800, cursor: 'pointer' }}>Continue →</button>
@@ -287,10 +287,10 @@ export default function RegisterPage() {
                           <div style={{ 
                             position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0, 
                             background: 'rgba(15,23,42,0.95)', backdropFilter: 'blur(20px)', 
-                            borderRadius: '14px', border: '1px solid rgba(255,255,255,0.1)', 
+                            borderRadius: '14px', border: '1px solid var(--glass-border)', 
                             maxHeight: '280px', // Roughly 7 items (40px each)
                             overflowY: 'auto', zIndex: 100, 
-                            boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                            boxShadow: '0 20px 50px var(--glass-shadow)',
                             padding: '8px'
                           }} className="custom-scroll">
                             {COUNTRIES.map(c => (
@@ -303,7 +303,7 @@ export default function RegisterPage() {
                                   transition: 'all 0.2s',
                                   background: form.nationality === c ? 'rgba(36,70,212,0.3)' : 'transparent'
                                 }}
-                                onMouseEnter={e => { e.target.style.background = 'rgba(255,255,255,0.05)'; e.target.style.color = 'white'; }}
+                                onMouseEnter={e => { e.target.style.background = 'var(--glass-highlight)'; e.target.style.color = 'white'; }}
                                 onMouseLeave={e => { e.target.style.background = form.nationality === c ? 'rgba(36,70,212,0.3)' : 'transparent'; e.target.style.color = form.nationality === c ? 'white' : 'rgba(255,255,255,0.7)'; }}
                               >
                                 {c}
@@ -319,7 +319,7 @@ export default function RegisterPage() {
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>{PURPOSES.map(p => <div key={p.val} onClick={() => set('purpose', p.val)} style={pillStyle(form.purpose === p.val)}>{p.label}</div>)}</div>
                   </div>
                   <div style={{ display: 'flex', gap: '16px' }}>
-                    <button type="button" onClick={back} style={{ flex: 1, padding: '16px', borderRadius: '14px', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>Back</button>
+                    <button type="button" onClick={back} style={{ flex: 1, padding: '16px', borderRadius: '14px', background: 'var(--glass-highlight)', color: 'white', border: '1px solid var(--glass-border)', cursor: 'pointer' }}>Back</button>
                     <button type="button" onClick={next} style={{ flex: 2, padding: '16px', borderRadius: '14px', background: 'var(--primary)', color: 'white', border: 'none', cursor: 'pointer' }}>Next</button>
                   </div>
                 </div>
@@ -338,7 +338,7 @@ export default function RegisterPage() {
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>{PREFS.map(p => <div key={p.key} onClick={() => setPref(p.key)} style={pillStyle(form.prefs[p.key])}>{p.icon} {p.name}</div>)}</div>
                   </div>
                   <div style={{ display: 'flex', gap: '16px' }}>
-                    <button type="button" onClick={back} style={{ flex: 1, padding: '16px', borderRadius: '14px', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>Back</button>
+                    <button type="button" onClick={back} style={{ flex: 1, padding: '16px', borderRadius: '14px', background: 'var(--glass-highlight)', color: 'white', border: '1px solid var(--glass-border)', cursor: 'pointer' }}>Back</button>
                     <button type="button" onClick={next} style={{ flex: 2, padding: '16px', borderRadius: '14px', background: 'var(--primary)', color: 'white', border: 'none', cursor: 'pointer' }}>Review</button>
                   </div>
                 </div>
@@ -346,13 +346,13 @@ export default function RegisterPage() {
 
               {((step === 4 && accType === 'passenger') || (step === 2 && accType === 'staff')) && (
                 <div>
-                  <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', marginBottom: '32px' }}>
+                  <div style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-highlight)', borderRadius: '16px', padding: '24px', marginBottom: '32px' }}>
                     <div style={{ marginBottom: '16px' }}><label style={labelStyle}>Full Name</label><div style={{ color: 'white', fontWeight: 800 }}>{form.firstName} {form.lastName}</div></div>
                     <div style={{ marginBottom: '16px' }}><label style={labelStyle}>Email</label><div style={{ color: 'white', fontWeight: 800 }}>{form.email}</div></div>
                     {accType === 'passenger' && <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}><div><label style={labelStyle}>Age</label><div style={{ color: 'white', fontWeight: 800 }}>{form.age}</div></div><div><label style={labelStyle}>Budget</label><div style={{ color: 'white', fontWeight: 800 }}>{form.budget}</div></div></div>}
                   </div>
                   <div style={{ display: 'flex', gap: '16px' }}>
-                    <button type="button" onClick={back} style={{ flex: 1, padding: '16px', borderRadius: '14px', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }}>Edit</button>
+                    <button type="button" onClick={back} style={{ flex: 1, padding: '16px', borderRadius: '14px', background: 'var(--glass-highlight)', color: 'white', border: '1px solid var(--glass-border)', cursor: 'pointer' }}>Edit</button>
                     <button type="button" onClick={submit} disabled={loading} style={{ flex: 2, padding: '16px', borderRadius: '14px', background: 'var(--primary)', color: 'white', border: 'none', fontWeight: 800, cursor: loading ? 'not-allowed' : 'pointer' }}>{loading ? 'Creating…' : 'Confirm & Register'}</button>
                   </div>
                 </div>

@@ -24,3 +24,4 @@ __pycache__/
 # Misc
 psql_paths.txt
 *.log
+.vercel

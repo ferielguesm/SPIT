@@ -172,7 +172,7 @@ export default function RolesPage() {
           </div>
 
           {/* Top nationalities from real DB */}
-          <div style={{ position: 'relative', zIndex: 1, background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '20px 24px', minWidth: 200 }}>
+          <div style={{ position: 'relative', zIndex: 1, background: 'var(--glass-highlight)', backdropFilter: 'blur(8px)', border: '1px solid var(--glass-border)', borderRadius: '16px', padding: '20px 24px', minWidth: 200 }}>
             <div style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 12 }}>Top Nationalities</div>
             {topNationalities.length > 0 ? topNationalities.map(([nat, count]) => (
               <div key={nat} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, gap: 16 }}>

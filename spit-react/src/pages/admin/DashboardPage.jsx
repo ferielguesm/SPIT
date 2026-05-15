@@ -44,7 +44,7 @@ export default function DashboardPage() {
 
   const fetchAirspace = async () => {
     try {
-      const response = await fetch('https://opensky-network.org/api/states/all?lamin=30&lomin=7&lamax=38&lomax=12');
+      const response = await fetch('http://localhost:8084/api/airspace/live');
       const data = await response.json();
       const count = data.states?.length || 0;
       setAirspaceCount(count);
@@ -209,7 +209,7 @@ export default function DashboardPage() {
                     ))}
                   </Pie>
                   <Tooltip 
-                    contentStyle={{ borderRadius: '16px', border: '1px solid var(--border)', boxShadow: '0 8px 32px rgba(0,0,0,0.3)', background: 'var(--surface)', color: 'var(--text)', padding: '12px 16px' }}
+                    contentStyle={{ borderRadius: '16px', border: '1px solid var(--border)', boxShadow: '0 8px 32px var(--glass-shadow)', background: 'var(--surface)', color: 'var(--text)', padding: '12px 16px' }}
                     itemStyle={{ fontWeight: 800, color: 'var(--text)', fontSize: '14px' }}
                   />
                   <Legend verticalAlign="bottom" height={36} wrapperStyle={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--chart-text)' }} />
@@ -256,9 +256,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <button onClick={() => setModal(true)} style={{ position: 'fixed', bottom: 32, right: 32, width: 64, height: 64, borderRadius: '24px', background: 'var(--primary-grad)', color: 'white', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 30px rgba(36,70,212,0.4)', zIndex: 50 }}>
-        <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>add</span>
-      </button>
+      {/* Fixed 'Add' button removed to avoid overlap with Chatbot */}
 
       <Modal open={modal} onClose={() => setModal(false)} title="Register New Passenger">
         <form onSubmit={submit}>

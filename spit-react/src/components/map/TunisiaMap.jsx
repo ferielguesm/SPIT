@@ -88,7 +88,7 @@ export default function TunisiaMap({ destination, recommendations = [], activeRe
         const isActive = rec.id === activeRecId;
         const icon = L.divIcon({
           className: 'custom-marker',
-          html: `<div style="width:${isActive?24:14}px; height:${isActive?24:14}px; background:${isActive?'#FFC038':'rgba(255,255,255,0.4)'}; border:2px solid white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; box-shadow:0 0 15px ${isActive?'#FFC038':'rgba(0,0,0,0.3)'}; transition:all 0.3s;">${isActive?'⭐':''}</div>`,
+          html: `<div style="width:${isActive?24:14}px; height:${isActive?24:14}px; background:${isActive?'#FFC038':'rgba(255,255,255,0.4)'}; border:2px solid white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; box-shadow:0 0 15px ${isActive?'#FFC038':'var(--glass-shadow)'}; transition:all 0.3s;">${isActive?'⭐':''}</div>`,
           iconSize: [isActive?24:14], iconAnchor: [isActive?12:7]
         });
 
@@ -142,13 +142,13 @@ export default function TunisiaMap({ destination, recommendations = [], activeRe
           position: 'absolute', top: '16px', left: '16px', zIndex: 1000,
           background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(12px)', 
           padding: '12px 16px', borderRadius: '14px', border: '1px solid rgba(255,192,56,0.3)',
-          color: 'white', display: 'flex', gap: '20px', boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
+          color: 'white', display: 'flex', gap: '20px', boxShadow: '0 8px 32px var(--glass-shadow)'
         }}>
           <div>
             <div style={{ fontSize: '10px', color: '#FFC038', fontWeight: 800, textTransform: 'uppercase', marginBottom: '2px' }}>Distance</div>
             <div style={{ fontSize: '18px', fontWeight: 900 }}>{routeInfo.distance} <span style={{ fontSize: '12px' }}>km</span></div>
           </div>
-          <div style={{ width: '1px', background: 'rgba(255,255,255,0.1)' }} />
+          <div style={{ width: '1px', background: 'var(--glass-border)' }} />
           <div>
             <div style={{ fontSize: '10px', color: '#FFC038', fontWeight: 800, textTransform: 'uppercase', marginBottom: '2px' }}>Est. Time</div>
             <div style={{ fontSize: '18px', fontWeight: 900 }}>{routeInfo.time} <span style={{ fontSize: '12px' }}>min</span></div>
@@ -161,9 +161,9 @@ export default function TunisiaMap({ destination, recommendations = [], activeRe
         style={{ 
           position: 'absolute', bottom: '16px', right: '16px', zIndex: 1000,
           width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(0,0,0,0.7)',
-          backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(8px)', border: '1px solid var(--glass-border)',
           color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.3)'
+          boxShadow: '0 4px 16px var(--glass-shadow)'
         }}>
         <span className="material-symbols-outlined">my_location</span>
       </button>

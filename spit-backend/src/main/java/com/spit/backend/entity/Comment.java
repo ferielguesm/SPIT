@@ -22,7 +22,7 @@ public class Comment {
     private String authorName;
     private String authorProfileImageUrl;
 
-    @Column(nullable = false)
+    @Column
     private Integer likes = 0;
 
     @ElementCollection

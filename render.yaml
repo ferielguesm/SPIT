@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: spit-backend
+    env: docker
+    plan: free
+    dockerContext: spit-backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8084
+      - key: SPRING_DATASOURCE_URL
+        sync: false # Set this in Render dashboard from your Neon DB (e.g. jdbc:postgresql://ep-xxx.neon.tech/spit?sslmode=require)
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false # Set this in Render dashboard from your Neon DB
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false # Set this in Render dashboard from your Neon DB
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false # Set this in Render dashboard to your Vercel URL (e.g. https://spit.vercel.app)
+      - key: XAI_API_KEY
+        sync: false # Set this in Render dashboard (Groq/Llama 3.3 Key)

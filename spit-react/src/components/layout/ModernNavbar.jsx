@@ -33,6 +33,15 @@ export default function ModernNavbar() {
       borderBottom: theme === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.05)',
       transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
     },
+    container: {
+      maxWidth: '1400px',
+      width: '100%',
+      margin: '0 auto',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: '100%'
+    },
     logoSection: {
       display: 'flex',
       alignItems: 'center',
@@ -105,56 +114,68 @@ export default function ModernNavbar() {
       <style>{`
         .nav-icon:hover { transform: scale(1.1); opacity: 1; color: var(--primary); }
         .logo-hover:hover { transform: scale(1.1) rotate(-3deg); filter: drop-shadow(0 0 15px rgba(var(--primary-rgb), 0.3)); }
+        
+        @media (max-width: 1024px) {
+          nav { padding: 0 20px !important; }
+          .center-pill { display: none !important; }
+        }
+        @media (max-width: 768px) {
+          .nav-logo { height: 50px !important; }
+          .right-actions { gap: 8px !important; }
+          .hide-mobile { display: none !important; }
+        }
       `}</style>
 
-      {/* LEFT: LOGO */}
-      <div 
-        style={s.logoSection} 
-        onClick={() => navigate('/feed')}
-        className="logo-hover"
-      >
-        <img src={logo} alt="SPIT" style={{ height: '65px', width: 'auto', display: 'block' }} />
-      </div>
-
-      {/* CENTER: FLOATING PILL */}
-      <div style={s.centerPill}>
-        {[
-          { path: '/feed', icon: 'home', label: 'Home' },
-          { path: '/dashboard', icon: 'dashboard', label: 'Dashboard' },
-          { path: '/profile', icon: 'person', label: 'Profile' }
-        ].map(item => (
-          <div 
-            key={item.path}
-            onClick={() => navigate(item.path)} 
-            style={s.pillItem(isActive(item.path))}
-            title={item.label}
-            className="nav-icon"
-          >
-            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>{item.icon}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* RIGHT: ACTIONS */}
-      <div style={s.rightSection}>
-        <div style={s.iconBtn} onClick={() => navigate('/messages')} className="nav-icon">
-          <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>chat_bubble</span>
-        </div>
-        <div style={s.iconBtn} onClick={toggle} className="nav-icon">
-          <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
-            {theme === 'dark' ? 'light_mode' : 'dark_mode'}
-          </span>
-        </div>
-        <div style={s.avatar} onClick={() => navigate('/profile')} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
-          {initials}
-        </div>
+      <div style={s.container}>
+        {/* LEFT: LOGO */}
         <div 
-          style={{ ...s.iconBtn, color: '#EF4444', border: '1px solid rgba(239, 68, 68, 0.2)', background: 'rgba(239, 68, 68, 0.05)' }} 
-          onClick={() => { logout(); navigate('/login'); }}
-          className="nav-icon"
-          title="Logout"
+          style={s.logoSection} 
+          onClick={() => navigate('/feed')}
+          className="logo-hover"
         >
-          <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>logout</span>
+          <img src={logo} alt="SPIT" className="nav-logo" style={{ height: '65px', width: 'auto', display: 'block', transition: 'all 0.3s' }} />
+        </div>
+
+        {/* CENTER: FLOATING PILL */}
+        <div style={s.centerPill} className="center-pill">
+          {[
+            { path: '/feed', icon: 'home', label: 'Home' },
+            { path: '/dashboard', icon: 'analytics', label: 'Dashboard' },
+            { path: '/profile', icon: 'account_circle', label: 'Profile' }
+          ].map(item => (
+            <div 
+              key={item.path}
+              onClick={() => navigate(item.path)} 
+              style={s.pillItem(isActive(item.path))}
+              title={item.label}
+              className="nav-icon"
+            >
+              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>{item.icon}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* RIGHT: ACTIONS */}
+        <div style={s.rightSection} className="right-actions">
+          <div style={s.iconBtn} onClick={() => navigate('/messages')} className="nav-icon hide-mobile">
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>forum</span>
+          </div>
+          <div style={s.iconBtn} onClick={toggle} className="nav-icon">
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
+              {theme === 'dark' ? 'light_mode' : 'dark_mode'}
+            </span>
+          </div>
+          <div style={s.avatar} className="hide-mobile" onClick={() => navigate('/profile')} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
+            {initials}
+          </div>
+          <div 
+            style={{ ...s.iconBtn, color: '#EF4444', border: '1px solid rgba(239, 68, 68, 0.2)', background: 'rgba(239, 68, 68, 0.05)' }} 
+            onClick={() => { logout(); navigate('/login'); }}
+            className="nav-icon"
+            title="Logout"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>logout</span>
+          </div>
         </div>
       </div>
     </nav>

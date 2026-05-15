@@ -61,10 +61,10 @@ export default function ChatWidget() {
           background: isOpen ? 'rgba(36,70,212,0.4)' : 'rgba(36,70,212,0.2)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255,255,255,0.1)',
+          border: '1px solid var(--glass-border)',
           cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
           color: isOpen ? 'white' : 'rgba(255,255,255,0.7)',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+          boxShadow: '0 4px 16px var(--glass-shadow)',
           transition: 'all 0.2s',
         }}
         onMouseEnter={e => { e.currentTarget.style.background = 'rgba(36,70,212,0.4)'; e.currentTarget.style.color = 'white'; }}
@@ -79,7 +79,7 @@ export default function ChatWidget() {
           position: 'absolute', top: '70px', right: 0,
           width: '380px', height: '520px', background: 'var(--surface)',
           borderRadius: '24px', border: '1px solid var(--border)',
-          boxShadow: '0 16px 48px rgba(0,0,0,0.4)', overflow: 'hidden',
+          boxShadow: '0 16px 48px var(--glass-shadow)', overflow: 'hidden',
           display: 'flex', flexDirection: 'column',
           backdropFilter: 'blur(20px)',
         }}>

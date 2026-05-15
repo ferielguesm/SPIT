@@ -1,9 +1,9 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { Client } from '@stomp/stompjs';
 
-// In dev: VITE_WS_URL=http://localhost:8083/ws  → ws://localhost:8083/ws
+// In dev: VITE_WS_URL=http://localhost:8084/ws  → ws://localhost:8084/ws
 // In prod: VITE_WS_URL=https://spit-backend.onrender.com/ws → wss://spit-backend.onrender.com/ws
-const WS_URL = import.meta.env.VITE_WS_URL || 'http://localhost:8083/ws';
+const WS_URL = import.meta.env.VITE_WS_URL || 'http://localhost:8084/ws';
 
 /**
  * useWebSocket(topic, onMessage)

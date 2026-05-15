@@ -15,6 +15,7 @@ const PassengerDashboard = lazy(() => import('./pages/public/PassengerDashboard'
 const PassengerProfile   = lazy(() => import('./pages/public/PassengerProfile'));
 const PassengerFeed      = lazy(() => import('./pages/public/PassengerFeed'));
 const PassengerMessenger = lazy(() => import('./pages/public/PassengerMessenger'));
+const SuggestionsPage    = lazy(() => import('./pages/public/SuggestionsPage'));
 const AdminLayout          = lazy(() => import('./components/layout/AdminLayout'));
 const DashboardPage        = lazy(() => import('./pages/admin/DashboardPage'));
 const PassengersPage       = lazy(() => import('./pages/admin/PassengersPage'));
@@ -48,6 +49,7 @@ function PassengerRoute({ children }) {
 }
 
 import ModernNavbar from './components/layout/ModernNavbar';
+import ChatWidget from './components/ChatWidget';
 
 // ── Passenger Portal Layout ───────────────────────────────
 function PassengerPortalLayout() {
@@ -86,16 +88,7 @@ function MainLayout() {
 export default function App() {
   return (
     <Suspense fallback={<PageLoader />}>
-      <div className="bubble-container">
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-      </div>
+      <ChatWidget />
       <Routes>
         {/* Immersive Auth Pages (No Global Header/Footer) */}
         <Route path="/login"    element={<LoginPage />} />
@@ -112,7 +105,8 @@ export default function App() {
           <Route path="/feed"      element={<PassengerRoute><PassengerFeed /></PassengerRoute>} />
           <Route path="/dashboard" element={<PassengerRoute><PassengerDashboard /></PassengerRoute>} />
           <Route path="/profile"   element={<PassengerRoute><PassengerProfile /></PassengerRoute>} />
-          <Route path="/messages"  element={<PassengerRoute><PassengerMessenger /></PassengerRoute>} />
+          <Route path="/messages"     element={<PassengerRoute><PassengerMessenger /></PassengerRoute>} />
+          <Route path="/suggestions"  element={<PassengerRoute><SuggestionsPage /></PassengerRoute>} />
         </Route>
 
         {/* Admin portal (No Global Header/Footer) */}

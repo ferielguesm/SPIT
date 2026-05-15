@@ -7,7 +7,7 @@ import { BASE_URL } from '../../api';
 
 const NAV = [
   { to: '/',                     icon: 'home',                 label: 'Home' },
-  { to: '/admin',                icon: 'dashboard',            label: 'Dashboard' },
+  { to: '/admin',                icon: 'analytics',            label: 'Dashboard' },
   { to: '/admin/passengers',     icon: 'groups',               label: 'Passengers' },
   { to: '/admin/recommendations',icon: 'clinical_notes',       label: 'Recommendations' },
   { to: '/admin/analytics',      icon: 'monitoring',           label: 'Analytics' },
@@ -47,7 +47,7 @@ export default function Sidebar() {
   return (
     <aside style={{
       width: 260, height: '100vh', position: 'fixed', left: 0, top: 0,
-      background: 'var(--sidebar-bg)', borderRight: isDark ? '1px solid rgba(255,255,255,0.05)' : 'none',
+      background: 'var(--sidebar-bg)', borderRight: isDark ? '1px solid var(--glass-highlight)' : 'none',
       display: 'flex', flexDirection: 'column', padding: '24px 0',
       zIndex: 50,
       boxShadow: isDark ? 'none' : '4px 0 20px rgba(0,0,0,0.05)',
@@ -110,7 +110,7 @@ export default function Sidebar() {
 
       <div style={{ padding: '16px 12px' }}>
         <button onClick={handleLogout}
-          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', color: 'white', cursor: 'pointer', transition: 'all 0.2s', fontSize: '13px', fontWeight: 600 }}>
+          style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', borderRadius: '12px', background: 'var(--glass-bg)', border: '1px solid var(--glass-highlight)', color: 'white', cursor: 'pointer', transition: 'all 0.2s', fontSize: '13px', fontWeight: 600 }}>
           <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>logout</span>
           <span>Sign Out</span>
         </button>

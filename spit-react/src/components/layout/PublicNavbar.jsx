@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png';
 import ChatWidget from '../chat/ChatWidget';
 
 const NAV_ITEMS = [
-  { to: '/',      icon: 'cottage',        label: 'Home' },
+  { to: '/',      icon: 'home',           label: 'Home' },
   { to: '/about', icon: 'travel_explore', label: 'About Us' },
   { to: '/login', icon: 'manage_accounts', label: 'My Account' },
 ];
@@ -34,13 +34,13 @@ export default function PublicNavbar() {
           }}
           onMouseLeave={e => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.querySelector('img').style.filter = 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))';
+            e.currentTarget.querySelector('img').style.filter = 'drop-shadow(0 2px 8px var(--glass-shadow))';
           }}
         >
           <img src={logo} alt="SPIT" 
             style={{ 
               height: '100px', width: 'auto', objectFit: 'contain', 
-              filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))',
+              filter: 'drop-shadow(0 2px 8px var(--glass-shadow))',
               transition: 'filter 0.3s ease'
             }} 
           />
@@ -56,7 +56,7 @@ export default function PublicNavbar() {
         background: 'rgba(36,70,212,0.25)',
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
-        border: '1px solid rgba(255,255,255,0.1)',
+        border: '1px solid var(--glass-border)',
         borderRadius: '999px',
         boxShadow: '0 12px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08)',
         pointerEvents: 'all',
@@ -72,12 +72,12 @@ export default function PublicNavbar() {
               border: isActive ? '1px solid rgba(255,192,56,0.6)' : '1px solid transparent',
               color: isActive ? '#FFC038' : 'rgba(255,255,255,0.6)',
               transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: isActive ? 'inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.2)' : 'none',
+              boxShadow: isActive ? 'inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 12px var(--glass-shadow)' : 'none',
               transform: isActive ? 'scale(1.05)' : 'scale(1)',
             })}
             onMouseEnter={e => {
               if (!e.currentTarget.getAttribute('style').includes('rgba(36,70,212,0.8)')) {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+                e.currentTarget.style.background = 'var(--glass-border)';
                 e.currentTarget.style.color = 'white';
                 e.currentTarget.style.transform = 'scale(1.05)';
               }
@@ -107,10 +107,10 @@ export default function PublicNavbar() {
             background: 'rgba(36,70,212,0.2)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            border: '1px solid var(--glass-border)',
             cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'rgba(255,255,255,0.7)',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+            boxShadow: '0 4px 16px var(--glass-shadow)',
             transition: 'all 0.2s',
           }}
           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(36,70,212,0.4)'; e.currentTarget.style.color = 'white'; }}
