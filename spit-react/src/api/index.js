@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // In dev: reads from .env → VITE_API_URL=http://localhost:8084
 // In prod: reads from .env.production or Vercel env vars → VITE_API_URL=https://spit-backend.onrender.com
-export const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8084';
+export const BASE_URL = import.meta.env.VITE_API_URL || 'https://spit-backend-688k.onrender.com';
 const BASE = `${BASE_URL}/api`;
 
 const http = axios.create({
