@@ -4,7 +4,7 @@ services:
     env: docker
     plan: free
     dockerContext: spit-backend
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: spit-backend/Dockerfile
     envVars:
       - key: PORT
         value: 8084
